@@ -4,6 +4,10 @@ Setup and Installation
 
 * Prerequisites
   - Python 3.X
+  - Latest Version of Flask
+    * pip install flask
+    * OR python -m pip install flask
+    * or py -m pip install flask
   - Any modern web browser (Chrome or Firefox preferred)
 
 * Running Flask (run.bat)
