@@ -60,7 +60,27 @@ def msg_send():
 def msg_receive():
 	return "notImplementedException"
 
-	
+### Profile ###
+# get a profile
+@app.route("/profile/get", methods=['GET'])
+def profile_get():
+	return "notImplementedException"
+
+# ChangeScreenName
+@app.route("/profile/changescreenname", methods=['POST'])
+def profile_get():
+	return "notImplementedException"
+
+# AddClass
+@app.route("/profile/addclass", methods=['POST'])
+def profile_addclass():
+	return "notImplementedException"
+
+# RemoveClass
+@app.route("/profile/removeclass", methods=['POST'])
+def profile_removeclass():
+	return "notImplementedException"
+
 if __name__ == "__main__":
 	app.run()
 
