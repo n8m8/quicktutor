@@ -2,6 +2,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 ##### Front End Routes #####
+
 @app.route("/")
 def index():
 	return render_template('index.html')
@@ -10,7 +11,9 @@ def index():
 def test():
 	return "test123"
 
+
 ##### Web Service Routes #####
+
 ### Authentication ###
 # createAccount
 @app.route("/auth/createaccount", methods=['POST'])
@@ -33,6 +36,7 @@ def auth_forgotpassword():
 	email = request.form['email']
 	return "notImplementedException"
 
+
 ### Main Activity Page / Listings ###
 # getlistings
 @app.route("/listings/getall", methods=['GET'])
@@ -49,6 +53,7 @@ def listings_create():
 def listings_respond():
 	return "notImplementedException"
 
+
 ### Messages ###
 # sendmessage
 @app.route("/msg/send", methods=['POST'])
@@ -60,6 +65,7 @@ def msg_send():
 def msg_receive():
 	return "notImplementedException"
 
+
 ### Profile ###
 # get a profile
 @app.route("/profile/get", methods=['GET'])
@@ -68,7 +74,7 @@ def profile_get():
 
 # ChangeScreenName
 @app.route("/profile/changescreenname", methods=['POST'])
-def profile_get():
+def profile_changescreenname():
 	return "notImplementedException"
 
 # AddClass
