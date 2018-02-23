@@ -19,3 +19,8 @@ Setup and Installation
   - Type "py app.py" or "python app.py" and press enter
 
 ===============================================================
+* Running sqlite3 (cmd line)
+  - Navigaet to the QuickTutor directory using the command line
+  - Type sqli3 pythonsqlite.db
+  - .quit to exit
+ 
