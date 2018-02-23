@@ -1,6 +1,8 @@
 import sqlite3
 from sqlite3 import Error
 
+dbname = 'pythonsqlite.db'
+
 def create_connection(db_file):
     """ creating a database connection to a SQLite database """
     try:
@@ -12,6 +14,28 @@ def create_connection(db_file):
     # finally:
     #     conn.close()
     return None
+
+def create_user(eemail, ddisplayname, ppassword):
+    try:
+        query = "INSERT INTO users (email, password, displayname) VALUES ('nfwalls', 'testpassword', 'testname')";
+        conn = sqlite3.connect(dbname)
+        c = conn.cursor()
+        c.execute(query)
+        conn.commit()
+        conn.close()
+    except Error as e:
+        print(e)
+
+def get_all_users():
+    try:
+        query = "SELECT * FROM users"
+        conn = sqlite3.connect(dbname)
+        c = conn.cursor()
+        c.execute(query)
+        conn.commit()
+        conn.close()
+    except Error as e:
+        print(e)
 
 def create_table(conn, create_table_sql):
     # create a table from the create_table_sql statement
@@ -91,6 +115,8 @@ def main():
     else:
         print("Error! cannot create the database connection.")
 
+    create_user("nfwalls", "nathan", "testpassword")
+    print(get_all_users())
 
 if __name__ == '__main__':
     main()

@@ -1,6 +1,7 @@
 Nathan Walls (nfw10) Senior Project README
 
 2/23
+# try adding test queries to figure out how sqlite in python works (~/pythonsql.py)
 # Look into database aditya implemented
 
 2/22
