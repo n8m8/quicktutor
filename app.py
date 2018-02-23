@@ -16,22 +16,19 @@ def test():
 
 ### Authentication ###
 # createAccount
-@app.route("/auth/createaccount", methods=['POST'])
-def auth_createAccount():
-	email = request.form['email']
-	displayname = request.form['displayname']
+@app.route("/auth/createaccount/<email>/<displayname>", methods=['POST'])
+def auth_createAccount(email, displayname):
 	password = request.form['password']
 	return "notImplementedException"
 
 # login
-@app.route("/auth/login", methods=['POST'])
-def auth_login():
-	email = request.form['email']
+@app.route("/auth/login/<email>", methods=['POST'])
+def auth_login(email):
 	password = request.form['password']
 	return "notImplementedException"
 
 # forgotPassword
-@app.route("/auth/forgotpassword", methods=['POST'])
+@app.route("/auth/forgotpassword/<email>", methods=['POST'])
 def auth_forgotpassword():
 	email = request.form['email']
 	return "notImplementedException"
@@ -44,20 +41,20 @@ def listings_getall():
 	return "notImplementedException"
 
 # createlistings
-@app.route("/listings/create", methods=['POST'])
-def listings_create():
+@app.route("/listings/create/<email>/<location>/<cclass>/<description>", methods=['POST'])
+def listings_create(email, location, cclass, description):
 	return "notImplementedException"
 
 # createlistings
-@app.route("/request/respond", methods=['POST'])
-def listings_respond():
+@app.route("/request/respond/<email>/<listingId>", methods=['POST'])
+def listings_respond(email, listingId):
 	return "notImplementedException"
 
 
 ### Messages ###
 # sendmessage
-@app.route("/msg/send", methods=['POST'])
-def msg_send():
+@app.route("/msg/send/<originId>/<destId>", methods=['POST'])
+def msg_send(originId, destId):
 	return "notImplementedException"
 
 # receivemessages
@@ -73,18 +70,18 @@ def profile_get():
 	return "notImplementedException"
 
 # ChangeScreenName
-@app.route("/profile/changescreenname", methods=['POST'])
-def profile_changescreenname():
+@app.route("/profile/changescreenname/<newName>", methods=['POST'])
+def profile_changescreenname(newName):
 	return "notImplementedException"
 
 # AddClass
-@app.route("/profile/addclass", methods=['POST'])
-def profile_addclass():
+@app.route("/profile/addclass/<classDept>/<classNum>", methods=['POST'])
+def profile_addclass(classDept, classNum):
 	return "notImplementedException"
 
 # RemoveClass
-@app.route("/profile/removeclass", methods=['POST'])
-def profile_removeclass():
+@app.route("/profile/removeclass/<classDept>/<classNum>", methods=['POST'])
+def profile_removeclass(classDept, classNum):
 	return "notImplementedException"
 
 if __name__ == "__main__":
