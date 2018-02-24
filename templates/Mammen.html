@@ -9,19 +9,58 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-
+  .navbar
+  {
+  	margin-bottom: 0;
+  	margin-top: 0;
+  	background-color: #4174f4;
+  }
+  .navbar-brand
+  {
+  	float:left;
+  	padding:0 0px 0px;
+  	height: auto;
+  }
+  .navbar-inverse .navbar-nav .active a, .navbar-inverse .navbar-nav .active a:focus, .navbar-inverse .navbar-nav .active a:hover
+  {
+  	color: #FFF;
+  	background-color: #4174f4;
+  }
   </style>
 </head>
 <body>
 	<nav class = "navbar navbar-inverse">
-		<div class = container-fluid">
+		<div class = "container-fluid">
 			<div class = "navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#MyNavbar">
 					<span class = "icon-bar"></span>
 					<span class = "icon-bar"></span>
 					<span class = "icon-bar"></span>	
 				</button>
-				<a class = "navbar-brand" href = "#"><img src = "img/w3newbie.png"></a>"
+				<a class = "navbar-brand" href = "#"><img src="C:\Users\User\Desktop\Spring 2018\395Git\2018_spring_395_quicktutor\static\images\Main Page\images.jpg" class="img-responsive" alt="Cinque Terre" height = "80" width = "40">
+				</a>
+			</div>
+			<div class =  "collapse navbar-collapse" id="myNavbar">
+				<ul class = "nav navbar-nav navbar right">
+					<li class = "active">
+						<a href = "#">Home</a></li>
+						<li><a href = "#">Terms and Conditions</a></li>
+						<li><a href = "#">Contact Us</a></li>
+						<li><a href = "#">Documentation</a></li>
+
+		</div>
+	</nav>
+	   <div class = "row" >
+	   	<div class="col-md-8">
+	   		<h2>Pending Tutor Requests</h2>
+	   		<ol>
+	   			<li>EECS 391 - Alpha Beta Pruning</li>
+	   		</ol>
+	   	</div>
+  		<div class="col-md-4">
+  			<p class="text-right" href = "#"><h2>My Profile</h2></p>
+  		</div>
+	   </div>
 
 
 </body>
