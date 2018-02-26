@@ -48,6 +48,73 @@ def create_table(conn, create_table_sql):
     except Error as e:
         print(e)
 
+def create_users(conn, user):
+    # Create a new user into the users table
+    # :param conn:
+    # :param user:
+    # :return: user id (optional)
+    sql = '''INSERT INTO users(email,password,displayname)
+              VALUES(?,?,?)'''
+    cur = conn.cursor()
+    cur.execute(sql, user)
+    return cur.lastrowid
+
+# def create_ruserclasses(conn, ruserclass):
+#     # Create a new relation into the ruserclasses table
+#     # :param conn:
+#     # :param user:
+#     # :return: user id (optional)
+#     sql = '''INSERT INTO ruserclasses()
+#               VALUES(?)'''
+#     cur = conn.cursor()
+#     cur.execute(sql, ruserclass)
+#     return cur.lastrowid
+
+def create_classes(conn, classes):
+    # Create a new class into the classes table
+    # :param conn:
+    # :param class:
+    # :return:
+    sql = '''INSERT INTO classes(dept,c_number)
+              VALUES(?,?)'''
+    cur = conn.cursor()
+    cur.execute(sql, classes)
+    return cur.lastrowid
+
+def create_listings(conn, listing):
+    # Create a new listing into the listings table
+    # :param conn:
+    # :param listing:
+    # :return:
+    sql = '''INSERT INTO listings(l_userid,l_classid,shortDescription,time_Stamp)
+              VALUES(?,?,?,?)'''
+    cur = conn.cursor()
+    cur.execute(sql, listing)
+    return cur.lastrowid
+
+def create_helphairs(conn, help_pair):
+    # Create a new user into the users table
+    # :param conn:
+    # :param help_pair:
+    # :return: user id (optional)
+    sql = '''INSERT INTO helpPairs(h_listingid,tutorid,fieldname,time_Stamp)
+              VALUES(?,?,?,?)'''
+    cur = conn.cursor()
+    cur.execute(sql, help_pair)
+    return cur.lastrowid
+
+def create_messages(conn, message):
+    # Create a new message into the messages table
+    # :param conn:
+    # :param user:
+    # :return: user id (optional)
+    sql = '''INSERT INTO helpPairs(m_pairid,messagecontents,time_Stamp)
+              VALUES(?,?,?)'''
+    cur = conn.cursor()
+    cur.execute(sql, message)
+    return cur.lastrowid
+
+
 def main():
     database = "pythonsqlite.db"
     sql_create_users_table = """CREATE TABLE IF NOT EXISTS users (
