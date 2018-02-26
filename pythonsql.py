@@ -185,6 +185,31 @@ def main():
     else:
         print("Error! cannot create the database connection.")
 
+
+    # Input vals in schema but this caused the DB to do the malfunction error so probs need
+    # to change stuff here. I was just using this as an example input test data.
+    
+    # testuser1 = ('testemail1@case.edu', 'testpassword1', 'user1');
+    # testuser2 = ('testemail2@case.edu', 'testpassword2', 'user2');
+    # testclass1 = ('EECS', 395);
+    # testclass2 = ('ENGR', 398);
+    # testlisting1 = (01, 01, 'description1', '00:00:00');
+    # testlisting2 = (02, 02, 'description2', '00:00:01');
+    # testhelppair1 = (01, 01, 'math', '00:00:00');
+    # testhelppair2 = (02, 02, 'english', '00:00:01');
+    # testmessage1 = (01, 'testing message 1', '00:00:00');
+    # testmessage2 = (02, 'testing message 2', '00:00:01');
+    # create_users(conn, testuser1);
+    # create_users(conn, testuser2);
+    # create_classes(conn, testclass1);
+    # create_classes(conn, testclass2);
+    # create_listings(conn, testlisting1);
+    # create_listings(conn, testlisting2);
+    # create_helphairs(conn, testhelppair1);
+    # create_helphairs(conn, testhelppair2);
+    # create_messages(conn, testmessage1);
+    # create_messages(conn, testmessage2);
+
     create_user("nfwalls", "nathan", "testpassword")
     print(get_all_users())
 

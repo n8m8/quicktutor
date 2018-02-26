@@ -20,7 +20,6 @@ Setup and Installation
 
 ===============================================================
 * Running sqlite3 (cmd line)
-  - Navigaet to the QuickTutor directory using the command line
-  - Type sqli3 pythonsqlite.db
+  - Navigate tokTutor directory using the command line
+  - Type sqlite3 pythonsqlite.db
   - .quit to exit
- 
