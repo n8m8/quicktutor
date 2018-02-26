@@ -15,6 +15,7 @@ def create_connection(db_file):
     #     conn.close()
     return None
 
+# this one doesn't specify the database used, I wrote the user one below following the convention
 def create_user(eemail, ddisplayname, ppassword):
     try:
         query = "INSERT INTO users (email, password, displayname) VALUES ('nfwalls', 'testpassword', 'testname')";
@@ -37,6 +38,8 @@ def get_all_users():
     except Error as e:
         print(e)
 
+
+#########################################
 def create_table(conn, create_table_sql):
     # create a table from the create_table_sql statement
     # :param conn: Connection object
