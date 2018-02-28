@@ -188,7 +188,7 @@ def main():
 
     # Input vals in schema but this caused the DB to do the malfunction error so probs need
     # to change stuff here. I was just using this as an example input test data.
-    
+
     # testuser1 = ('testemail1@case.edu', 'testpassword1', 'user1');
     # testuser2 = ('testemail2@case.edu', 'testpassword2', 'user2');
     # testclass1 = ('EECS', 395);
