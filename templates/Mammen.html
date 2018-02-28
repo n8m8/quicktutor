@@ -1,67 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Main Page</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-  .navbar
-  {
-  	margin-bottom: 0;
-  	margin-top: 0;
-  	background-color: #4174f4;
-  }
-  .navbar-brand
-  {
-  	float:left;
-  	padding:0 0px 0px;
-  	height: auto;
-  }
-  .navbar-inverse .navbar-nav .active a, .navbar-inverse .navbar-nav .active a:focus, .navbar-inverse .navbar-nav .active a:hover
-  {
-  	color: #FFF;
-  	background-color: #4174f4;
-  }
-  </style>
-</head>
-<body>
-	<nav class = "navbar navbar-inverse">
-		<div class = "container-fluid">
-			<div class = "navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#MyNavbar">
-					<span class = "icon-bar"></span>
-					<span class = "icon-bar"></span>
-					<span class = "icon-bar"></span>	
-				</button>
-				<a class = "navbar-brand" href = "#"><img src="C:\Users\User\Desktop\Spring 2018\395Git\2018_spring_395_quicktutor\static\images\Main Page\images.jpg" class="img-responsive" alt="Cinque Terre" height = "80" width = "40">
-				</a>
-			</div>
-			<div class =  "collapse navbar-collapse" id="myNavbar">
-				<ul class = "nav navbar-nav navbar right">
-					<li class = "active">
-						<a href = "#">Home</a></li>
-						<li><a href = "#">Terms and Conditions</a></li>
-						<li><a href = "#">Contact Us</a></li>
-						<li><a href = "#">Documentation</a></li>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <title>Main Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Work Sans' rel='stylesheet'>
+    <style>
+    .navbar
+    {
+      margin-bottom: 0;
+      margin-top: 0;
+      background-color: #002171;
+      font-size: 1.5em;
+      font-family: 'Work Sans'; 
+    }
+    .navbar-brand
+    {
+      float:left;
+      padding:0 0px 0px;
+      height: auto;
+    }
+    .navbar-inverse .navbar-nav .active a, .navbar-inverse .navbar-nav .active a:focus, .navbar-inverse .navbar-nav .active a:hover
+    {
+      color: #FFF;
+      background-color: #002171;
+    }
 
-		</div>
-	</nav>
-	   <div class = "row" >
-	   	<div class="col-md-8">
-	   		<h2>Pending Tutor Requests</h2>
-	   		<ol>
-	   			<li>EECS 391 - Alpha Beta Pruning</li>
-	   		</ol>
-	   	</div>
-  		<div class="col-md-4">
-  			<p class="text-right" href = "#"><h2>My Profile</h2></p>
-  		</div>
-	   </div>
+    .img-responsive
+    {
+      height:100px;
+      width:150px;
+    }
+    body 
+    {
+      color: purple;
+      background-color: #ffc400;
+    }
+    </style>
+  </head>
+  <body>
+    <nav class = "navbar navbar-inverse">
+      <div class = "container-fluid">
+        <div class = "navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#MyNavbar">
+            <span class = "icon-bar"></span>
+            <span class = "icon-bar"></span>
+            <span class = "icon-bar"></span>  
+          </button>
+          <a class = "navbar-brand" href = "#">
+            <img src="Spring 2018\395Git\2018_spring_395_quicktutor\static\images\Main Page\logo2.png" class="img-responsive">
+          </a>
+        </div>
+        <div class =  "collapse navbar-collapse" id="myNavbar">
+          <ul class = "nav navbar-nav navbar right">
+            <li class = "active">
+              <a href = "#">Home</a></li>
+              <li><a href = "#">Terms and Conditions</a></li>
+              <li><a href = "#">Contact Us</a></li>
+              <li><a href = "#">Documentation</a></li>
+      </div>
+    </nav>
+    <div class = "container">
+      <div class = "row" >
+        <span class="border-danger">
+        <div class = "col-lg-8 col-md-8 col-sm-6 col-xs-12">
+           <h4>
+            <a href = "#requestsContent">Pending Tutor Requests</a>
+           </h4>
+           <div id = "requestsContent">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Class</th>
+                  <th scope="col">Topic</th>
+                  <th scope="col">Preferred Meeting Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>EECS 391</td>
+                  <td>EECS 200</td>
+                  <td>DYNAMICS</td>
+                </tr>
+                <tr>
+                  <td>DFS</td>
+                  <td>Engineering Stuff</td>
+                  <td>Moving Stuff</td>
+                </tr>
+                <tr>
+                  <td>KSL First Floor</td>
+                  <td>Wade Commons</td>
+                  <td>Wade Commons</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+          </span>
+          <div class = "col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <span class="border-danger">
+             <h4>
+            <a href = "#profileContent" data-toggle = "collapse">My Profile</a>
+           </h4>
+           <div id = "profileContent" class = "collapse">
+            <dl class="row">
+                  <dt class="col-sm-6">Classes Taken</dt>
+                <dd class="col-sm-6">Stuff</dd>
+                <dt class="col-sm-6">Current Classes</dt>
+                <dd class="col-sm-6">MATH 121, MATH 122, MATH 123, MATH 124</dd>
+                <dt class="col-sm-6">Major</dt>
+                <dd class="col-sm-6">No Idea</dd>
+                <dt class="col-sm-6">Year</dt>
+                <dd class="col-sm-6">2022</dd>
+              </dl>
+            </div>
+            <a href="NewRequest.html"><button type="Submit" class="btn btn-primary mb-2" >Submit New Request</button></a>
+          </span>
+            </div>
+        </div>
+      </div>
+  </body>
+  </html>
 
-
-</body>
-</html>
