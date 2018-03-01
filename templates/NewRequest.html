@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>New Request Page</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<style>
+
+
+	</style>
+</head>
+
+<body>
+<form>
+  <div class="form-group">
+    <label for="ClassName">Class Number</label>
+    <input type="text" class="form-control" id="ClassName" placeholder="Eg. MATH 121", maxlength = "9">
+  </div>
+  <div class="form-group">
+    <label for="Topic">Topic</label>
+    <input type="text" class="form-control" id="Topic" placeholder="Eg. Derivatives, ALEKS, Interfaces", maxlength = "50">
+  </div>
+  <div class="form-group">
+    <label for="Location">Preferred Meeting Location</label>
+    <select class="form-control" id="Location">
+      <option>KSL First Floor</option>
+      <option>KSL Second Floor</option>
+      <option>Wade Commons</option>
+      <option>Fribley Commons</option>
+      <option>Thwing</option>
+      <option>PBL</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="Question">Question</label>
+    <textarea class="form-control" id="Question" rows="3", maxlength = "350"></textarea>
+  </div>
+  <div class="form-check">
+  <input class="form-check-input" type="radio" name="exampleRadios" id="Tutor" value="option1" checked>
+  <label class="form-check-label" for="Tutor">
+    Tutor
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="exampleRadios" id="Collaborate" value="option2">
+  <label class="form-check-label" for="Collaborate">
+    Collaborate
+  </label>
+</div>
+  <button type="Submit" class="btn btn-primary mb-2">Submit</button>
+</form>
+
+</body>
+
+
+</html>
