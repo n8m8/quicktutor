@@ -1,3 +1,5 @@
+Redesigned the main page (Mammen.html)
+Added Terms and Conditions page with link to cwru academic integrity page.
 Added Profile page with data.
 Added button linking to page to submit new request.
 Added background color
