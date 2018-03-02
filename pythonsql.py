@@ -111,7 +111,7 @@ def create_messages(conn, message):
     # :param conn:
     # :param user:
     # :return: user id (optional)
-    sql = '''INSERT INTO helpPairs(m_pairid,messagecontents,time_Stamp)
+    sql = '''INSERT INTO messages(m_pairid,messagecontents,time_Stamp)
               VALUES(?,?,?)'''
     cur = conn.cursor()
     cur.execute(sql, message)

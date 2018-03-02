@@ -1,7 +1,10 @@
 Simple Text Readme Aditya Malik
 
 Entry for week 2:
-- Added functions for creating users, listings, help pairs, messages, and classes
+- Continuing updating and creating input functions from front-end team
+- Created new db files for separating away from calling everything in main function
+- Added functions for creating users, listings, help pairs, messages, and classes in python dbRequests
+- Continuing testing input data to see if everything is working as intended
 - Created four different logo designs to be used for front end development
 - Continued testing various queries to check if we can input data into tables correctly
 
