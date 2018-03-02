@@ -14,4 +14,4 @@ Entry for week 1:
 - Found a few bugs in the original database design which we need to fix together as a team
 - Will continue to read through the documentation of SQLite3 w/ Python to make sure things go smoothly
 Problems:
---We have tutorID as another foreign key but what is it referencing? -> Discuss with Nathan
+- We have tutorID as another foreign key but what is it referencing? -> Discuss with Nathan

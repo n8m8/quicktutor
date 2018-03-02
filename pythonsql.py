@@ -157,6 +157,7 @@ def main():
                                     time_Stamp text NOT NULL,
                                     PRIMARY KEY(pairid),
                                     FOREIGN KEY (h_listingid) REFERENCES listings (listingid)
+                                    FOREIGN KEY (tutorid) REFERENCES users (userid)
                                     );"""
     sql_create_messages_table = """CREATE TABLE IF NOT EXISTS messages (
                                     messagenumber integer NOT NULL,
