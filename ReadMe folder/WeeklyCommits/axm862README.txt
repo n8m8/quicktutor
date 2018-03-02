@@ -7,6 +7,7 @@ Entry for week 2:
 - Continuing testing input data to see if everything is working as intended
 - Created four different logo designs to be used for front end development
 - Continued testing various queries to check if we can input data into tables correctly
+- So far no errors while running data, working through algorithm to fetch input data and store in an array to retrieve later
 
 
 
