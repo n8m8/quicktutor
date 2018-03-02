@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from pythonsql import *
 app = Flask(__name__)
 
@@ -12,8 +12,21 @@ def index():
 def test():
 	return "test123"
 
+@app.route("/kian")
+def kian():
+	return render_template('dashboard.html')
+
 
 ##### Web Service Routes #####
+
+### DEMO WEB SERVICE ROUTE ###
+
+@app.route('/request/submitTestForm', methods=['POST'])
+def request_submitTestForm():
+	firstname = request.form['firstname']
+	lastname = request.form['lastname']
+	print("Name:", firstname, lastname)
+	return redirect('/kian')
 
 ### Authentication ###
 # createAccount
