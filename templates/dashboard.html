@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<style>
+.close {
+	color: #AAAAAA;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: #000;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.modal {
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+	display: none;
+	height: 100%;
+	left: 0;
+	overflow: auto;
+	padding-top: 100px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+.modal-content {
+	background-color: #FEFEFE;
+	border: 1px solid #888;
+	margin: auto;
+	padding: 20px;
+	width: 80%;
+}
+</style>
+</head>
+
+<body>
+	<div id="content">
+		<div style="width:50%, left:0">
+			{% include 'content.html' %}
+		</div>
+		<div style="width: 50%; right: 0">
+			<p>TEST TEXT</p>
+			<button id="buttonNewRequest">New Request</button>
+			<div id="modalNewRequest" class="modal">
+				<div class="modal-content">
+					<span id="modalNewRequestClose" class="close">&times;</span>
+					<form action="/request/submitTestForm" method="POST">
+						<label>First Name: </label>
+						<input type="text" name="firstname" value="John">
+						<br>
+						<label>Last Name: </label>
+						<input type="text" name="lastname" value="Doe">
+						<br><br>
+						<input type="submit" value="Submit">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		// get variables from HTML
+		var modalNewRequest = document.getElementById('modalNewRequest');
+		var buttonNewRequest = document.getElementById('buttonNewRequest');
+		var modalNewRequestClose = document.getElementById('modalNewRequestClose');
+
+		// when the button to open modal is clicked, display modal div
+		buttonNewRequest.onclick = function() {
+			modalNewRequest.style.display = "block";
+		}
+
+		// when the button to close modal is clicked, hide modal div
+		modalNewRequestClose.onclick = function() {
+			modalNewRequest.style.display = "none";
+		}
+
+		// if 
+		window.onclick = function(event) {
+			if (event.target == modalNewRequest) {
+				modalNewRequest.style.display = "none";
+			}
+		}
+	</script>
+
+</body>
+</html>
