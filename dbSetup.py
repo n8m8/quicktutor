@@ -16,6 +16,8 @@ c.execute('''CREATE TABLE IF NOT EXISTS classes (
                                     classid integer NOT NULL,
                                     dept text NOT NULL,
                                     c_number integer NOT NULL,
+                                    name integer NOT NULL,
+                                    description integer NOT NULL,
                                     PRIMARY KEY(classid)
                                     )''')
 c.execute('''CREATE TABLE IF NOT EXISTS ruserclasses (
