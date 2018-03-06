@@ -1,5 +1,8 @@
 Nathan Walls (nfw10) Senior Project README
 
+### Week 3 ###
+# Finish implementing class import in ~/dbSetup.py by using ~/classDataExtractor.py
+
 ### Week 2 ###
 # start function to read the classes json into the sqlite database
 # Figure out how to read xml and output to json to make that file size smaller
