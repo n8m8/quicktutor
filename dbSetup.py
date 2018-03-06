@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, json # , dbSetupClasses
 
 dbname = 'pythonsqlite.db'
 
@@ -54,6 +54,15 @@ c.execute('''CREATE TABLE IF NOT EXISTS messages (
                                     PRIMARY KEY(messagenumber),
                                     FOREIGN KEY (m_pairid) REFERENCES helpPairs(pairid)
                                     )''')
+with open('data.txt', 'r') as f:
+    datastore = json.loads(f.read())
+    # print(datastore)
+
+for item in datastore:
+    # print(json.dumps(item))
+    query = "INSERT INTO classes (dept, c_number, name, description) VALUES ( '" + item["dept"] + "', '" + item["num"] + "', '" + item["name"] + "', '" + item["desc"] + "');"
+    # print(query)
+    c.execute(query)
 
 conn.commit()
 conn.close()

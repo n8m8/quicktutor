@@ -1,5 +1,6 @@
 import sqlite3
 from sqlite3 import Error
+import dbSetup
 
 dbname = 'pythonsqlite.db'
 
