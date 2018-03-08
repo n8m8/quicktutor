@@ -112,3 +112,12 @@ def delMessage(message_id):
     conn.commit()
 
     conn.close()
+
+def getAllUsers():
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT * FROM users")
+    conn.commit()
+
+    conn.close()
