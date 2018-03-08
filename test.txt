@@ -1,3 +1,0 @@
-this is a test file for a test commit
-
-making changes to ensure my name change worked
