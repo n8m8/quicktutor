@@ -1,5 +1,14 @@
 Simple Text Readme Aditya Malik
 
+Entry for week 3:
+- Finished splitting of files and removed unnecessary functions, files, and extra stuff
+- Created functions to retrieve all users, classes, and listings
+- Built initial functions to retrieve user information from front end login
+- Updated app.py to include get and post requests
+- Updated original database create tables to create a rUserClasses tables upon creation
+- Waiting on front-end to fully create UI elements before implementing a test
+
+
 Entry for week 2:
 - Continuing updating and creating input functions from front-end team
 - Created new db files for separating away from calling everything in main function

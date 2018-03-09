@@ -121,3 +121,45 @@ def getAllUsers():
     conn.commit()
 
     conn.close()
+
+def getAllClasses():
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT * FROM classes")
+    conn.commit()
+
+    conn.close
+
+def getAllListings():
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT * FROM listings")
+    conn.commit()
+
+    conn.close
+
+def checkUsername(user):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT userid FROM users WHERE email=?", (user,))
+
+    ret = c.fetchone()
+    conn.close()
+    if ret is None:
+        return -1
+    return ret[0]
+
+def checkPassword(pwd):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT userid FROM users WHERE password=?", (pwd,))
+
+    ret = c.fetchone()
+    conn.close()
+    if ret is None:
+        return -1
+    return ret[0]

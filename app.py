@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session, jsonify
 from pythonsql import *
+import json
+from dbRequests import *
 app = Flask(__name__)
 
 ##### Front End Routes #####
@@ -41,6 +43,31 @@ def auth_login(email):
 	password = request.form['password']
 	return "notImplementedException"
 
+@app.route('/login', methods=['POST'])
+def login():
+	user_name = checkUsername(request.form['username'])
+	pwd = checkPassword(request.form['password'])
+	if user_name != -1:
+		session['user_name'] = user_name
+		session['pwd'] = pwd
+		session['logged_in'] = True
+	elif request.form['username'] == 'admin':
+		session['admin'] = True
+		session['logged_in'] = True
+	return redirect('/')
+
+@app.route('/logout')
+def logout():
+	session['user_name'] = -1
+	session['admin'] = False
+	session['logged_in'] = False
+	return redirect('/')
+
+@app.route('/request/getUserInfo', methods=['GET'])
+def request_getUserInfo():
+	if request.method == 'GET':
+		sampleJsonData = '[{"userid": 1, "email": "test@case.edu", "password": "password", "displayname": "TestUser"}]'
+		return sampleJsonData
 # forgotPassword
 @app.route("/auth/forgotpassword/<email>", methods=['POST'])
 def auth_forgotpassword():
