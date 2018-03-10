@@ -1,7 +1,7 @@
 Nathan Walls (nfw10) Senior Project README
 
 ### Week 3 ###
-# Work on implementing DB queries
+# Work on implementing DB queries (~/app.py and ~/dbRequests.py)
 # Attempt to figure out a good way to test routes in ~app.py
 # Fix web service calls to follow the way Kian wants to pass stuff in from the front end (~/app.py)
 # Finish implementing class import in ~/dbSetup.py by using ~/classDataExtractor.py
