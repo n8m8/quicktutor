@@ -18,12 +18,12 @@ def deleteUser(user_id):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("DELETE FROM users WHERE userid=?", (user_id))
+    c.execute("DELETE FROM users WHERE userid=?", (user_id,))
     conn.commit()
 
     conn.close()
 
-def addClass(class_data):
+def addClass(class_data, userid):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
@@ -32,11 +32,12 @@ def addClass(class_data):
 
     conn.close()
 
-def delClass(class_id):
+def delClass(class_id, userid):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("DELETE FROM classes WHERE classid=?", (class_id))
+    # c.execute("DELETE FROM classes WHERE classid=?", (class_id))
+    c.execute("DELETE FROM ruserclasses WHERE r_classid=? AND r_userid=?", (class_id, userid,))
     conn.commit()
 
     conn.close()
@@ -45,27 +46,29 @@ def addRuserClass(userId, classDept, classNum):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    classId = c.execute("SELECT classid FROM classes WHERE dept=? AND cnumber=?)", (classDept, classNum))
+    classId = c.execute("SELECT classid FROM classes WHERE dept=? AND cnumber=?)", (classDept, classNum,))
 
-    c.execute("INSERT INTO ruserclasses(r_userid, r_classid) VALUES(?,?)", (userId, classId))
+    c.execute("INSERT INTO ruserclasses(r_userid, r_classid) VALUES(?,?)", (userId, classId,))
     conn.commit()
 
     conn.close()
 
-def deleteRuserClass(rUserClass_id):
+def deleteRuserClass(userId, classDept, classNum):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("DELETE FROM ruserclasses WHERE r_userid=?", (rUserClass_id))
+    classId = c.execute("SELECT classid FROM classes WHERE dept=? AND cnumber=?)", (classDept, classNum,))
+
+    c.execute("DELETE FROM ruserclasses WHERE r_userid=? AND r_classid=?", (userId, classId,))
     conn.commit()
 
     conn.close()
 
-def addListing(listing_data):
+def addListing(email, location, cclass, description):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("INSERT INTO listings(listingid, l_userid, l_classid, shortDescription, time_Stamp) VALUES(null,?,?,?,?)", listing_data)
+    c.execute("INSERT INTO listings(listingid, l_userid, l_classid, shortDescription, time_Stamp) VALUES(null,?,?,?,null)", (email, cclass, description,))
     conn.commit()
 
     conn.close()
@@ -74,16 +77,16 @@ def deleteListing(listing_id):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("DELETE FROM listings WHERE listingid=?", (listing_id))
+    c.execute("DELETE FROM listings WHERE listingid=?", (listing_id,))
     conn.commit()
 
     conn.close()
 
-def addHelpPair(helpPair_data):
+def addHelpPair(email, listingId):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("INSERT INTO helpPairs(pairid, h_listingid,tutorid,fieldname,time_Stamp) VALUES(null,?,?,?,?)", helpPair_data)
+    c.execute("INSERT INTO helpPairs(pairid, h_listingid,tutorid,fieldname,time_Stamp) VALUES(null,?,?,?,?)", (email, listingId,))
     conn.commit()
 
     conn.close()
@@ -92,16 +95,26 @@ def delHelpPair(helpPair_id):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("DELETE FROM helpPairs WHERE pairid=?", (helpPair_id))
+    c.execute("DELETE FROM helpPairs WHERE pairid=?", (helpPair_id,))
     conn.commit()
 
     conn.close()
 
-def addMessage(message_data):
+def addMessage(originId, destId, messagecontents):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("INSERT INTO messages(messagenumber,m_pairid,messagecontents,time_Stamp) VALUES(null,?,?,?)", message_data)
+    c.execute("INSERT INTO messages(messagenumber,m_pairid,messagecontents,time_Stamp) VALUES(null,?,?,null)", (originId destId, messagecontents,))
+    conn.commit()
+
+    conn.close()
+
+def getAllMessages(userId):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    # this is wrong and would only work if a tutor gets their messages
+    c.execute("SELECT * FROM messages WHERE tutorid=?", (userId,))
     conn.commit()
 
     conn.close()
@@ -110,7 +123,7 @@ def delMessage(message_id):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("DELETE FROM messages WHERE messagenumber=?", (message_id))
+    c.execute("DELETE FROM messages WHERE messagenumber=?", (message_id,))
     conn.commit()
 
     conn.close()

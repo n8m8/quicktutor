@@ -35,6 +35,7 @@ def auth_createAccount():
 	email = request.form['email']
 	displayname = request.form['displayname']
 	password = request.form['password']
+	dbRequests.addUser((email, password, displayname))
 	return "notImplementedException"
 
 # login
@@ -89,7 +90,8 @@ def auth_forgotpassword():
 # getlistings
 @app.route("/listings/getall", methods=['GET'])
 def listings_getall():
-	return "notImplementedException"
+	listings = dbRequests.getAllListings()
+	return listings
 
 # createlistings
 @app.route("/listings/create", methods=['POST'])
@@ -98,6 +100,7 @@ def listings_create():
 	location = request.form['location']
 	cclass = request.form['cclass']
 	description = request.form['description']
+	dbRequests.addListing(())
 	return "notImplementedException"
 
 # createlistings
@@ -105,6 +108,7 @@ def listings_create():
 def listings_respond():
 	email = request.form['email']
 	listingId = request.form['listingId']
+	addHelpPair(email, listingId)
 	return "notImplementedException"
 
 
@@ -114,12 +118,16 @@ def listings_respond():
 def msg_send():
 	originId = request.form['originId']
 	destId = request.form['destId']
+	messagecontents = request.form['messagecontents']
+	addMessage(originId, destId, messagecontents)
 	return "notImplementedException"
 
 # receivemessages
 @app.route("/msg/receive", methods=['POST'])
 def msg_receive():
-	return "notImplementedException"
+	userId = request.form['userId']
+	messages = dbRequests.getAllMessages(userId)
+	return messages
 
 
 ### Profile ###
@@ -146,8 +154,10 @@ def profile_addclass():
 # RemoveClass
 @app.route("/profile/removeclass", methods=['POST'])
 def profile_removeclass():
+	userId = request.form['userId']
 	classDept = request.form['classDept']
 	classNum = request.form['classNum']
+	dbRequests.deleteRuserClass(userId, classDept, classNum)
 	return "notImplementedException"
 
 if __name__ == "__main__":
