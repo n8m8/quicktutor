@@ -50,7 +50,8 @@
 			<div id="modalNewRequest" class="modal">
 				<div class="modal-content">
 					<span id="modalNewRequestClose" class="close">&times;</span>
-					<form action="/request/submitTestForm" method="POST">
+					{% include 'NewRequestForm.html'%}
+					<!--<form action="/request/submitTestForm" method="POST">
 						<label>First Name: </label>
 						<input type="text" name="firstname" value="John">
 						<br>
@@ -58,7 +59,7 @@
 						<input type="text" name="lastname" value="Doe">
 						<br><br>
 						<input type="submit" value="Submit">
-					</form>
+					</form> -->
 				</div>
 			</div>
 		</div>

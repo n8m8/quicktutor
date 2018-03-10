@@ -1,3 +1,11 @@
+Week 3:
+Started pushing test info to the database (dashboard)
+Added Edit Profile Page
+Changed forms from multiple forms to singular form in New Request
+Added New Request Form to the working Database+Flask
+Made formatting changes to main html (Mammen.html)
+Read about Flask and working with databases and bootstrap
+
 Week 2:
 Redesigned the main page (Mammen.html)
 Added Terms and Conditions page with link to cwru academic integrity page.

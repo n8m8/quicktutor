@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>New Request Page</title>
-	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  	<style>
-
-
-	</style>
-</head>
-
-<body>
-<form>
+<form action="/request/submitTestForm" method="POST">
   <div class="form-group">
     <label for="ClassName">Class Number</label>
     <input type="text" class="form-control" id="ClassName" placeholder="Eg. MATH 121", maxlength = "9">
@@ -34,8 +18,3 @@
   </div>
   <button type="Submit" class="btn btn-primary mb-2">Submit</button>
 </form>
-
-</body>
-
-
-</html>
