@@ -41,11 +41,13 @@ def delClass(class_id):
 
     conn.close()
 
-def addRuserClass(rUserClass_data):
+def addRuserClass(userId, classDept, classNum):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("INSERT INTO ruserclasses(r_userid, r_c;assid) VALUES(null,null)", rUserClass_data)
+    classId = c.execute("SELECT classid FROM classes WHERE dept=? AND cnumber=?)", (classDept, classNum))
+
+    c.execute("INSERT INTO ruserclasses(r_userid, r_classid) VALUES(?,?)", (userId, classId))
     conn.commit()
 
     conn.close()

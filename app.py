@@ -130,12 +130,14 @@ def profile_changescreenname():
 # AddClass
 @app.route("/profile/addclass", methods=['POST'])
 def profile_addclass():
+
 	classDept = request.form['classDept']
 	classNum = request.form['classNum']
+	dbRequests.addRuserClass(session['user_name'], classDept, classNum)
 	return "notImplementedException"
 
 # RemoveClass
-@app.route("/profile/removeclass/<classDept>/<classNum>", methods=['POST'])
+@app.route("/profile/removeclass", methods=['POST'])
 def profile_removeclass():
 	classDept = request.form['classDept']
 	classNum = request.form['classNum']
