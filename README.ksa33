@@ -1,5 +1,12 @@
 Kian Alikhani (ksa33) - EECS 395 Senior Project Readme
 
+Week 3
+# Implemented Bootstrap grids into dashboard
+  # Met with Mammen and designed multiple page layouts (on paper) for each web page for easier future design
+# Set up index login / signup page with post methods for backend to process
+# Learned how to implement cookies in flask to handle login and signup on front end
+# TODO: Implement cookies on front end
+
 Week 2
 # Set up initial dashboard
   # Demo flask {{% include %}} to show how flask can render html templates
