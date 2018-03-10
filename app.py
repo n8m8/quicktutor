@@ -32,14 +32,17 @@ def request_submitTestForm():
 
 ### Authentication ###
 # createAccount
-@app.route("/auth/createaccount/<email>/<displayname>", methods=['POST'])
-def auth_createAccount(email, displayname):
+@app.route("/auth/createaccount", methods=['POST'])
+def auth_createAccount():
+	email = request.form['email']
+	displayname = request.form['displayname']
 	password = request.form['password']
 	return "notImplementedException"
 
 # login
-@app.route("/auth/login/<email>", methods=['POST'])
-def auth_login(email):
+@app.route("/auth/login", methods=['POST'])
+def auth_login():
+	email = request.form['email']
 	password = request.form['password']
 	return "notImplementedException"
 
@@ -69,7 +72,7 @@ def request_getUserInfo():
 		sampleJsonData = '[{"userid": 1, "email": "test@case.edu", "password": "password", "displayname": "TestUser"}]'
 		return sampleJsonData
 # forgotPassword
-@app.route("/auth/forgotpassword/<email>", methods=['POST'])
+@app.route("/auth/forgotpassword/", methods=['POST'])
 def auth_forgotpassword():
 	email = request.form['email']
 	return "notImplementedException"
@@ -82,20 +85,28 @@ def listings_getall():
 	return "notImplementedException"
 
 # createlistings
-@app.route("/listings/create/<email>/<location>/<cclass>/<description>", methods=['POST'])
-def listings_create(email, location, cclass, description):
+@app.route("/listings/create", methods=['POST'])
+def listings_create():
+	email = request.form['email']
+	location = request.form['location']
+	cclass = request.form['cclass']
+	description = request.form['description']
 	return "notImplementedException"
 
 # createlistings
-@app.route("/request/respond/<email>/<listingId>", methods=['POST'])
-def listings_respond(email, listingId):
+@app.route("/request/respond", methods=['POST'])
+def listings_respond():
+	email = request.form['email']
+	listingId = request.form['listingId']
 	return "notImplementedException"
 
 
 ### Messages ###
 # sendmessage
-@app.route("/msg/send/<originId>/<destId>", methods=['POST'])
-def msg_send(originId, destId):
+@app.route("/msg/send", methods=['POST'])
+def msg_send():
+	originId = request.form['originId']
+	destId = request.form['destId']
 	return "notImplementedException"
 
 # receivemessages
@@ -111,18 +122,23 @@ def profile_get():
 	return "notImplementedException"
 
 # ChangeScreenName
-@app.route("/profile/changescreenname/<newName>", methods=['POST'])
-def profile_changescreenname(newName):
+@app.route("/profile/changescreenname", methods=['POST'])
+def profile_changescreenname():
+	newName = request.form['newName']
 	return "notImplementedException"
 
 # AddClass
-@app.route("/profile/addclass/<classDept>/<classNum>", methods=['POST'])
-def profile_addclass(classDept, classNum):
+@app.route("/profile/addclass", methods=['POST'])
+def profile_addclass():
+	classDept = request.form['classDept']
+	classNum = request.form['classNum']
 	return "notImplementedException"
 
 # RemoveClass
 @app.route("/profile/removeclass/<classDept>/<classNum>", methods=['POST'])
-def profile_removeclass(classDept, classNum):
+def profile_removeclass():
+	classDept = request.form['classDept']
+	classNum = request.form['classNum']
 	return "notImplementedException"
 
 if __name__ == "__main__":

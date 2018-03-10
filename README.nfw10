@@ -1,6 +1,7 @@
 Nathan Walls (nfw10) Senior Project README
 
 ### Week 3 ###
+# Fix web service calls to follow the way Kian wants to pass stuff in from the front end (~/app.py)
 # Finish implementing class import in ~/dbSetup.py by using ~/classDataExtractor.py
 
 ### Week 2 ###
