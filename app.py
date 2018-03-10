@@ -14,7 +14,7 @@ def index():
 def test():
 	return "test123"
 
-@app.route("/kian")
+@app.route("/dashboard")
 def kian():
 	return render_template('dashboard.html')
 
@@ -25,10 +25,8 @@ def kian():
 
 @app.route('/request/submitTestForm', methods=['POST'])
 def request_submitTestForm():
-	firstname = request.form['firstname']
-	lastname = request.form['lastname']
-	print("Name:", firstname, lastname)
-	return redirect('/kian')
+	print(request.form)
+	return redirect('/dashboard')
 
 ### Authentication ###
 # createAccount
@@ -42,9 +40,18 @@ def auth_createAccount():
 # login
 @app.route("/auth/login", methods=['POST'])
 def auth_login():
-	email = request.form['email']
-	password = request.form['password']
-	return "notImplementedException"
+	# password = request.form['password']
+	# return "notImplementedException"
+	print(request.form)
+	return redirect('/dashboard')
+
+# signup
+@app.route("/auth/signup", methods=['POST'])
+def auth_signup():
+	# password = request.form['password']
+	# return "notImplementedException"
+	print(request.form)
+	return redirect('/dashboard')
 
 @app.route('/login', methods=['POST'])
 def login():

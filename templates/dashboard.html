@@ -1,65 +1,47 @@
 <!doctype html>
 <html>
 <head>
-<style>
-.close {
-	color: #AAAAAA;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover, .close:focus {
-	color: #000;
-	cursor: pointer;
-	text-decoration: none;
-}
-
-.modal {
-	background-color: rgb(0, 0, 0);
-	background-color: rgba(0, 0, 0, 0.4);
-	display: none;
-	height: 100%;
-	left: 0;
-	overflow: auto;
-	padding-top: 100px;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 1;
-}
-
-.modal-content {
-	background-color: #FEFEFE;
-	border: 1px solid #888;
-	margin: auto;
-	padding: 20px;
-	width: 80%;
-}
-</style>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-	<div id="content">
-		<div style="width:50%, left:0">
-			{% include 'content.html' %}
-		</div>
-		<div style="width: 50%; right: 0">
-			<p>TEST TEXT</p>
-			<button id="buttonNewRequest">New Request</button>
-			<div id="modalNewRequest" class="modal">
-				<div class="modal-content">
-					<span id="modalNewRequestClose" class="close">&times;</span>
-					{% include 'NewRequestForm.html'%}
-					<!--<form action="/request/submitTestForm" method="POST">
-						<label>First Name: </label>
-						<input type="text" name="firstname" value="John">
-						<br>
-						<label>Last Name: </label>
-						<input type="text" name="lastname" value="Doe">
-						<br><br>
-						<input type="submit" value="Submit">
-					</form> -->
+<body style="background-color: #89cff0;">
+	<style>
+		#mainContent {
+			border: 1px solid #000;
+			padding: 1em;
+		}
+	</style>
+	<div class="container">
+		{% include 'header.html' %}
+		<div class="row" style="padding-top: 1em; ">
+			<div class="col-md-8" id="mainContent">
+				<div>
+					{% include 'content.html' %}
+				</div>
+			</div>
+			<div class="col-md-4" id="mainContent">
+				<div>
+					<p>PROFILE AND INFO</p>
+					<button id="buttonEditProfile" class="btn btn-sm btn-success btn-block">Edit Profile</button>
+					<button id="buttonNewRequest" class="btn btn-sm btn-primary btn-block">New Request</button>
+					<button id="buttonLogOut" class="btn btn-sm btn-danger btn-block" onclick="window.location='/'">Log Out</button>
+					<div id="modalNewRequest" class="modal">
+						<div class="modal-content">
+							<span id="modalNewRequestClose" class="close">&times;</span>
+							<!--form action="/request/submitTestForm" method="POST">
+								<label>First Name: </label>
+								<input type="text" name="firstname" value="John">
+								<br>
+								<label>Last Name: </label>
+								<input type="text" name="lastname" value="Doe">
+								<br><br>
+								<input type="submit" value="Submit">
+							</form-->
+							{% include 'NewRequestForm.html' %}
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
