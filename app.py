@@ -1,8 +1,4 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
-<<<<<<< Updated upstream
-=======
-#from pythonsql import *
->>>>>>> Stashed changes
 import json
 from dbRequests import *
 app = Flask(__name__)
@@ -50,18 +46,18 @@ def auth_signup():
 	return redirect('/dashboard')
 
 # Login
-@app.route('/login', methods=['POST'])
+@app.route('/auth/login', methods=['POST'])
 def login():
-	user_name = checkUsername(request.form['username'])
-	pwd = checkPassword(request.form['password'])
-	if user_name != -1:
-		session['user_name'] = user_name
-		session['pwd'] = pwd
+	print(request.form)
+	userId = validateUserData((request.form['loginemail'], request.form['loginpassword'],))
+	if userId != -1:
+		session['user_name'] = userId
+		session['pwd'] = request.form['loginpassword']
 		session['logged_in'] = True
 	elif request.form['username'] == 'admin':
 		session['admin'] = True
 		session['logged_in'] = True
-	return redirect('/')
+	return redirect('/dashboard')
 
 @app.route('/logout')
 def logout():
@@ -69,6 +65,15 @@ def logout():
 	session['admin'] = False
 	session['logged_in'] = False
 	return redirect('/')
+
+@app.route('/request/getBasicInfo', methods=['GET'])
+def request_getBasicInfo():
+	if request.method == 'GET':
+		print(session)
+		if 'user_name' in session:
+			return getUsernameFromUserId((session['user_name'],))
+		else:
+			return "User did not exist"
 
 @app.route('/request/getUserInfo', methods=['GET'])
 def request_getUserInfo():
@@ -157,6 +162,7 @@ def profile_removeclass():
 	return "notImplementedException"
 
 if __name__ == "__main__":
+	app.secret_key = "3sAmVAtdh!GNTSKuZJJn4^5wve"
 	app.run()
 
 # http://flask.pocoo.org/docs/0.12/quickstart/ #

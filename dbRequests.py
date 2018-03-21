@@ -144,7 +144,7 @@ def getAllClasses():
     c.execute("SELECT * FROM classes")
     conn.commit()
 
-    conn.close
+    conn.close()
 
 def getAllListings():
     conn = sqlite3.connect(dbname)
@@ -153,19 +153,30 @@ def getAllListings():
     c.execute("SELECT * FROM listings")
     conn.commit()
 
-    conn.close
+    conn.close()
 
-def checkUsername(user_data):
+def validateUserData(user_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("SELECT userid FROM users WHERE email=?", user_data)
+    c.execute("SELECT userid FROM users WHERE email=? AND password=?", user_data)
 
     ret = c.fetchone()
     conn.close()
     if ret is None:
         return -1
     return ret[0]
+
+def getUsernameFromUserId(data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT displayname FROM users WHERE userId=?", data)
+    name = c.fetchone()
+
+    conn.commit()
+    conn.close()
+    return name
 
 def checkPassword(query_data):
     conn = sqlite3.connect(dbname)
