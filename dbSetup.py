@@ -31,6 +31,7 @@ c.execute('''CREATE TABLE IF NOT EXISTS listings (
                                     l_userid integer NOT NULL,
                                     l_classid integer NOT NULL,
                                     shortDescription text NOT NULL,
+                                    topic text,
                                     time_Stamp text NOT NULL,
                                     PRIMARY KEY(listingid),
                                     FOREIGN KEY (l_userid) REFERENCES users(userid),
