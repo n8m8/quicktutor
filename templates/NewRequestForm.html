@@ -1,5 +1,5 @@
-<form action="/request/submitTestForm" method="POST">
-  <div class="form-group">
+<!--  <form action="/request/submitTestForm" method="POST">
+  <div class="form">
     <label for="ClassName">Class Number</label>
     <input type="text" class="form-control" id="ClassName" placeholder="Eg. MATH 121", maxlength = "9">
     <label for="Topic">Topic</label>
@@ -17,4 +17,17 @@
     <textarea class="form-control" id="Question" rows="3", maxlength = "350"></textarea>
   </div>
   <button type="Submit" class="btn btn-primary mb-2">Submit</button>
+</form> -->
+<form action="/request/submitTestForm" method="POST">
+    <label>Class Name: </label>
+    <input type="text" name="classID" placeholder = "Eg. MATH 121", maxlength = "9">
+    <br>
+    <label>Topic: </label>
+    <input type="text" name="topic" placeholder = "Derivatives, Interfaces", maxlength = "50">
+    <label>Preferred Meeting Location: </label>
+    <input type="text" name = "location" placeholder = "Location">
+     <label>Description </label>
+    <input type="text" name = "description" placeholder = "Enter the description of your problem here">
+    <br><br>
+    <input type="submit" value="Submit">
 </form>
