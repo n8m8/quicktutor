@@ -1,4 +1,8 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
+<<<<<<< Updated upstream
+=======
+#from pythonsql import *
+>>>>>>> Stashed changes
 import json
 from dbRequests import *
 app = Flask(__name__)
