@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
-from pythonsql import *
 import json
 from dbRequests import *
 app = Flask(__name__)

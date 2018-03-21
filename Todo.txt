@@ -1,0 +1,24 @@
+Login Page:
+1. Valid user/pass check
+
+Sign Up:
+1. Verification of case.edu account
+2. Password requirements
+
+Cookies:
+1. On successful login, assign userID to frontend
+
+Chat:
+1. SocketIO [userID used as primary identifier]
+
+Submit New Request:
+1. Receive proper data
+2. Store in DB
+3. Initiate protocol b/w tutor and user (aka tutee)
+    - User sends request and goes to the backend
+    - Tutors receive requests (SocketIO) ~ refresh every 30 seconds to pull from backend
+    - User accepts/denies requests (goes to backend)
+    - Initiate chat protocol
+
+Test:
+1. Create two test users by hardcode (admin and another user) 
