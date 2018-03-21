@@ -41,14 +41,6 @@ def auth_createAccount():
 	dbRequests.addUser((email, password, displayname))
 	return "notImplementedException"
 
-# login
-@app.route("/auth/login", methods=['POST'])
-def auth_login():
-	# password = request.form['password']
-	# return "notImplementedException"
-	print(request.form)
-	return redirect('/dashboard')
-
 # signup
 @app.route("/auth/signup", methods=['POST'])
 def auth_signup():
@@ -57,6 +49,7 @@ def auth_signup():
 	print(request.form)
 	return redirect('/dashboard')
 
+# Login
 @app.route('/login', methods=['POST'])
 def login():
 	user_name = checkUsername(request.form['username'])
