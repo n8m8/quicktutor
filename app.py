@@ -97,7 +97,7 @@ def listings_getall():
 def listings_create():
 	email = request.form['email']
 	location = request.form['location']
-	cclass = request.form['cclass']
+	classID = request.form['classID']
 	description = request.form['description']
 	dbRequests.addListing(())
 	return "notImplementedException"
