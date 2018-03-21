@@ -104,7 +104,7 @@ def addMessage(originId, destId, messagecontents):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("INSERT INTO messages(messagenumber,m_pairid,messagecontents,time_Stamp) VALUES(null,?,?,null)", (originId destId, messagecontents,))
+    c.execute("INSERT INTO messages(messagenumber,m_pairid,messagecontents,time_Stamp) VALUES(null,?,?,null)", (originId, destId, messagecontents,))
     conn.commit()
 
     conn.close()
