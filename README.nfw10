@@ -1,5 +1,13 @@
 Nathan Walls (nfw10) Senior Project README
 
+### Week 4 ###
+# Test sessions by printing user's display name when they go to localhost/dashboard (~/templates/header.html, ~/dbRequests.py)
+# Implement sessions (you can log in, the server knows what user you are and that you are currently logged in using cookies etc) (~/app.py)
+# Add hardcoded admin and moderator users for testing and convenience
+# Update database field (~/dbSetup.py)
+# Fix and normalize the way the ~/dbRequests.py file accepts parameters
+# Attend weekly meeting (minutes in ~/Todo.txt)
+
 ### Week 3 ###
 # Work on implementing DB queries (~/app.py and ~/dbRequests.py)
 # Attempt to figure out a good way to test routes in ~app.py
