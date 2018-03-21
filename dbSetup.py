@@ -65,5 +65,8 @@ for item in datastore:
     # print(query)
     c.execute(query)
 
+c.execute("INSERT INTO users(userid, email, password, displayname) values(null,?,?,?)", ('qtadmin@case.edu', 'Password1', 'admin'))
+c.execute("INSERT INTO users(userid, email, password, displayname) values(null,?,?,?)", ('qtmod@case.edu', 'Password1', 'moderator'))
+
 conn.commit()
 conn.close()
