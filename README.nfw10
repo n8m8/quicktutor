@@ -1,6 +1,8 @@
 Nathan Walls (nfw10) Senior Project README
 
 ### Week 4 ###
+# Make createAccount work (~/app.py)
+# Attempt to debug why loggin in with an email not in our db does error 400 (~/app.py, ~/dbRequests.py)
 # Test sessions by printing user's display name when they go to localhost/dashboard (~/templates/header.html, ~/dbRequests.py)
 # Implement sessions (you can log in, the server knows what user you are and that you are currently logged in using cookies etc) (~/app.py)
 # Add hardcoded admin and moderator users for testing and convenience

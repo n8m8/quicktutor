@@ -28,28 +28,21 @@ def request_submitTestForm():
 	return redirect('/dashboard')
 
 ### Authentication ###
-# createAccount
-@app.route("/auth/createaccount", methods=['POST'])
-def auth_createAccount():
-	email = request.form['email']
-	displayname = request.form['displayname']
-	password = request.form['password']
-	dbRequests.addUser((email, password, displayname))
-	return "notImplementedException"
-
 # signup
 @app.route("/auth/signup", methods=['POST'])
 def auth_signup():
-	# password = request.form['password']
-	# return "notImplementedException"
-	print(request.form)
-	return redirect('/dashboard')
+	email = request.form['signupemail']
+	# displayname = request.form['displayname']
+	password = request.form['signuppassword']
+	addUser((email, password, 'fillerusername',))
+	return redirect('/')
 
 # Login
 @app.route('/auth/login', methods=['POST'])
 def login():
-	print(request.form)
+	# print(request.form)
 	userId = validateUserData((request.form['loginemail'], request.form['loginpassword'],))
+	print(userId)
 	if userId != -1:
 		session['user_name'] = userId
 		session['pwd'] = request.form['loginpassword']
@@ -57,6 +50,12 @@ def login():
 	elif request.form['username'] == 'admin':
 		session['admin'] = True
 		session['logged_in'] = True
+	else:
+		session['user_name'] = -1
+		session['admin'] = False
+		session['logged_in'] = False
+		print(session)
+		return "Login information was not valid."
 	return redirect('/dashboard')
 
 @app.route('/logout')

@@ -161,6 +161,8 @@ def validateUserData(user_data):
 
     c.execute("SELECT userid FROM users WHERE email=? AND password=?", user_data)
 
+    print(c)
+
     ret = c.fetchone()
     conn.close()
     if ret is None:
