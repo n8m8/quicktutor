@@ -9,6 +9,8 @@ Setup and Installation
     * OR python -m pip install flask
     * OR py -m pip install flask
   - Any modern web browser (Chrome or Firefox preferred)
+  - SocketIO needs to be installed
+    * pip install flask-socketIO
 
 * Running Flask (run.bat)
   - Navigate to the QuickTutor directory using explorer

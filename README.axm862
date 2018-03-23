@@ -2,9 +2,13 @@ Simple Text Readme Aditya Malik
 
 Entry for week 4:
 - Had group meeting to go over next steps and what each group member needs to do
-- Created Todo.txt which lists all next steps
-- Read up on SocketIO and other communication protocols to use with Flask
-- 
+- Wrote up minutes for 2hr group meeting to go over steps and typed up in Minutes.txt
+- Read up on SocketIO with Flask and Sessions with Flask, and other communication protocols to use
+- Coded dbMessages.py to help function as backend receiving message requests from Flask SocketIO
+- Coded dbSessions.py to handle different user sessions, need to go through and test out with front-end team
+  since they need to have the HTML routes going through to check for different users
+- Wrote up QuickTutor abstract for the group and submitted to professor Ray, also listed on this repo under Abstract.txt
+
 
 Entry for week 3:
 - Finished splitting of files and removed unnecessary functions, files, and extra stuff
