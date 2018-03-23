@@ -3,7 +3,7 @@ Login Page:
 
 Sign Up:
 ~~~1. Verification of case.edu account~~~ (Nathan 3/23)
-2. Password requirements
+~~~2. Password requirements~~~ (Nathan 3/23)
 
 Cookies:
 1. On successful login, assign userID to frontend

@@ -7,7 +7,7 @@ c = conn.cursor()
 
 c.execute('''CREATE TABLE IF NOT EXISTS users (
                                 userid integer NOT NULL,
-                                email text NOT NULL,
+                                email text NOT NULL UNIQUE,
                                 password text NOT NULL,
                                 displayname text NOT NULL,
                                 PRIMARY KEY(userid)
@@ -65,8 +65,8 @@ for item in datastore:
     # print(query)
     c.execute(query)
 
-c.execute("INSERT INTO users(userid, email, password, displayname) values(null,?,?,?)", ('qtadmin@case.edu', 'Password1', 'admin'))
-c.execute("INSERT INTO users(userid, email, password, displayname) values(null,?,?,?)", ('qtmod@case.edu', 'Password1', 'moderator'))
+# c.execute("INSERT INTO users(userid, email, password, displayname) values(null,?,?,?)", ('qtadmin@case.edu', 'Password1', 'admin'))
+# c.execute("INSERT INTO users(userid, email, password, displayname) values(null,?,?,?)", ('qtmod@case.edu', 'Password1', 'moderator'))
 
 conn.commit()
 conn.close()

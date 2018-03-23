@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
+from werkzeug.security import generate_password_hash, check_password_hash
 import json, re
 from dbRequests import *
 app = Flask(__name__)
@@ -14,8 +15,12 @@ def test():
 	return "test123"
 
 @app.route("/dashboard")
-def kian():
-	return render_template('dashboard.html')
+def dashboard():
+	print(session)
+	if session['logged_in'] == True:
+		return render_template('dashboard.html')
+	else:
+		return redirect('/')
 
 
 ##### Web Service Routes #####
@@ -39,12 +44,19 @@ def auth_signup():
 	regex = re.compile('(^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(case)\.edu$)')
 	regexResult = regex.match(email)
 
+	# Validate Password
+	pwregex = re.compile('(?=^.{8,}$)(?=.*\d)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$')
+	pwResult = regex.match(password)
+
 	if regexResult != None:
 		existingUserId = lookupUserIdFromEmail((email,))
-		print(existingUserId)
+
 		if existingUserId == -1:
-			addUser((email, password, 'fillerusername',))
-			return redirect('/')
+			if pwResult != None:
+				addUser((email, generate_password_hash(password), email,))
+				return redirect('/')
+			else:
+				return "Password did not meet strength requirements."
 		else:
 			return "That email is already taken!"
 	else:
@@ -56,10 +68,16 @@ def auth_signup():
 @app.route('/auth/login', methods=['POST'])
 def login():
 	# print(request.form)
-	userId = validateUserData((request.form['loginemail'], request.form['loginpassword'],))
-	print(userId)
-	if userId != -1:
-		session['user_name'] = userId
+	# userId = validateUserData((request.form['loginemail'], request.form['loginpassword'],))
+	hashedPassword = getHashedPassword((request.form['loginemail'],))
+
+	if hashedPassword is None:
+		return "There is no account associated with that email address."
+
+	matches = check_password_hash(hashedPassword, request.form['loginpassword'])
+
+	if matches:
+		session['user_name'] = request.form['loginemail']
 		session['pwd'] = request.form['loginpassword']
 		session['logged_in'] = True
 		if request.form['loginemail'].lower() == 'qtadmin@case.edu':
@@ -83,9 +101,11 @@ def request_getBasicInfo():
 	if request.method == 'GET':
 		print(session)
 		if 'user_name' in session:
-			return getUsernameFromUserId((session['user_name'],))
+			return getUsernameFromUserEmail((session['user_name'],))
 		else:
 			return "User did not exist"
+	else:
+		return "Invalid protocol for this route, use GET"
 
 @app.route('/request/getUserInfo', methods=['GET'])
 def request_getUserInfo():
@@ -175,6 +195,7 @@ def profile_removeclass():
 
 if __name__ == "__main__":
 	app.secret_key = "3sAmVAtdh!GNTSKuZJJn4^5wve"
+	addDefaultAccounts()
 	app.run()
 
 # http://flask.pocoo.org/docs/0.12/quickstart/ #
