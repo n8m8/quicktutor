@@ -191,3 +191,17 @@ def checkPassword(query_data):
     if ret is None:
         return -1
     return ret[0]
+
+def lookupUserIdFromEmail(query_data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+    c.execute("SELECT userid FROM users WHERE email=?", query_data)
+
+    userid = c.fetchone()
+
+    conn.commit()
+    conn.close()
+    if userid != None:
+        return userid
+    else:
+        return -1

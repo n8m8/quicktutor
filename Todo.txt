@@ -1,8 +1,8 @@
 Login Page:
-1. Valid user/pass check
+~~~1. Valid user/pass check~~~ (Nathan 3/23)
 
 Sign Up:
-1. Verification of case.edu account
+~~~1. Verification of case.edu account~~~ (Nathan 3/23)
 2. Password requirements
 
 Cookies:
@@ -21,4 +21,4 @@ Submit New Request:
     - Initiate chat protocol
 
 Test:
-1. Create two test users by hardcode (admin and another user) 
+~~~1. Create two test users by hardcode (admin and another user)~~~ (Nathan 3/21)

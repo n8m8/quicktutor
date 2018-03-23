@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
-import json
+import json, re
 from dbRequests import *
 app = Flask(__name__)
 
@@ -34,8 +34,23 @@ def auth_signup():
 	email = request.form['signupemail']
 	# displayname = request.form['displayname']
 	password = request.form['signuppassword']
-	addUser((email, password, 'fillerusername',))
-	return redirect('/')
+
+	# Validate email
+	regex = re.compile('(^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(case)\.edu$)')
+	regexResult = regex.match(email)
+
+	if regexResult != None:
+		existingUserId = lookupUserIdFromEmail((email,))
+		print(existingUserId)
+		if existingUserId == -1:
+			addUser((email, password, 'fillerusername',))
+			return redirect('/')
+		else:
+			return "That email is already taken!"
+	else:
+		return "Invalid email address. Please use a valid @case.edu address."
+
+
 
 # Login
 @app.route('/auth/login', methods=['POST'])

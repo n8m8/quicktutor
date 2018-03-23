@@ -1,6 +1,7 @@
 Nathan Walls (nfw10) Senior Project README
 
 ### Week 4 ###
+# Write email validation on signup (~/app.py, ~/dbRequests.py)
 # Make createAccount work (~/app.py)
 # Attempt to debug why loggin in with an email not in our db does error 400 (~/app.py, ~/dbRequests.py)
 # Test sessions by printing user's display name when they go to localhost/dashboard (~/templates/header.html, ~/dbRequests.py)
