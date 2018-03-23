@@ -78,7 +78,7 @@ def login():
 
 	if matches:
 		session['user_name'] = request.form['loginemail']
-		session['pwd'] = request.form['loginpassword']
+		session['pwd'] = hashedPassword
 		session['logged_in'] = True
 		if request.form['loginemail'].lower() == 'qtadmin@case.edu':
 			session['admin'] = True
