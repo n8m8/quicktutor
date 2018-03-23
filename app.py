@@ -47,22 +47,20 @@ def login():
 		session['user_name'] = userId
 		session['pwd'] = request.form['loginpassword']
 		session['logged_in'] = True
-	elif request.form['username'] == 'admin':
-		session['admin'] = True
-		session['logged_in'] = True
+		if request.form['loginemail'].lower() == 'qtadmin@case.edu':
+			session['admin'] = True
 	else:
 		session['user_name'] = -1
 		session['admin'] = False
 		session['logged_in'] = False
 		print(session)
 		return "Login information was not valid."
+
 	return redirect('/dashboard')
 
-@app.route('/logout')
+@app.route('/auth/logout', methods=['POST'])
 def logout():
-	session['user_name'] = -1
-	session['admin'] = False
-	session['logged_in'] = False
+	session.pop('user_name', None)
 	return redirect('/')
 
 @app.route('/request/getBasicInfo', methods=['GET'])
