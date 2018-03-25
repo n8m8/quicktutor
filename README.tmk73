@@ -1,3 +1,12 @@
+Week 4:
+Created a simple chat UI on a seperate page.
+Successfully pushed request data to the database.
+Read up about chat elements in html
+Changed bootstrap forms to html to push data, since flask and bootstrap don't work well together
+Read up about flaskmail and socket.io
+Met with the team about roadmap going forward
+
+
 Week 3:
 Started pushing test info to the database (dashboard)
 Added Edit Profile Page

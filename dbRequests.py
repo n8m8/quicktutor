@@ -1,4 +1,5 @@
 import sqlite3
+from werkzeug.security import generate_password_hash, check_password_hash
 
 dbname = 'pythonsqlite.db'
 
@@ -169,11 +170,24 @@ def validateUserData(user_data):
         return -1
     return ret[0]
 
-def getUsernameFromUserId(data):
+def getHashedPassword(query_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("SELECT displayname FROM users WHERE userId=?", data)
+    c.execute("SELECT password FROM users WHERE email=?", query_data)
+
+    hashedPassword = c.fetchone()
+    conn.close()
+
+    if hashedPassword is None:
+        return None
+    return hashedPassword[0]
+
+def getUsernameFromUserEmail(data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT displayname FROM users WHERE email=?", data)
     name = c.fetchone()
 
     conn.commit()
@@ -191,3 +205,34 @@ def checkPassword(query_data):
     if ret is None:
         return -1
     return ret[0]
+
+def lookupUserIdFromEmail(query_data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+    c.execute("SELECT userid FROM users WHERE email=?", query_data)
+
+    userid = c.fetchone()
+
+    conn.commit()
+    conn.close()
+    if userid != None:
+        return userid
+    else:
+        return -1
+
+def addDefaultAccounts():
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    adminpw = generate_password_hash('Password1')
+    modpw = generate_password_hash('Password1')
+
+    try:
+        c.execute("INSERT INTO users(userid, email, password, displayname) values(null,?,?,?)", ('qtadmin@case.edu', adminpw, 'admin'))
+        c.execute("INSERT INTO users(userid, email, password, displayname) values(null,?,?,?)", ('qtmod@case.edu', modpw, 'moderator'))
+    except sqlite3.IntegrityError:
+        print("Tried to add default accounts, but they already exist")
+
+
+    conn.commit()
+    conn.close()
