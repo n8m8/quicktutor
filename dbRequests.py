@@ -25,6 +25,8 @@ def confirmUser(query_data):
 
     fet = c.fetchone()
     if fet is None:
+        conn.commit()
+        conn.close()
         return False
 
     c.execute("UPDATE users SET confirmed = 'TRUE' WHERE email=?",query_data)
@@ -231,6 +233,7 @@ def lookupUserIdFromEmail(query_data):
     c.execute("SELECT userid FROM users WHERE email=?", query_data)
 
     userid = c.fetchone()
+    print(userid)
 
     conn.commit()
     conn.close()
