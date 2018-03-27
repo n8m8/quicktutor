@@ -1,8 +1,14 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
+from flask_mail import Mail
 from werkzeug.security import generate_password_hash, check_password_hash
 import json, re
+from activation import *
 from dbRequests import *
+import config
+
 app = Flask(__name__)
+app.config.from_object('config')
+mail = Mail(app)
 
 ##### Front End Routes #####
 
@@ -46,7 +52,7 @@ def auth_signup():
 
 	# Validate Password
 	pwregex = re.compile('(?=^.{8,}$)(?=.*\d)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$')
-	pwResult = regex.match(password)
+	pwResult = pwregex.search(password)
 
 	if regexResult != None:
 		existingUserId = lookupUserIdFromEmail((email,))
@@ -54,7 +60,9 @@ def auth_signup():
 		if existingUserId == -1:
 			if pwResult != None:
 				addUser((email, generate_password_hash(password), email,))
-				return redirect('/')
+				activationToken = make_email_token(email)
+				send(email, activationToken)
+				return 'Almost done! Check your email to activate your account.'
 			else:
 				return "Password did not meet strength requirements."
 		else:
@@ -62,7 +70,18 @@ def auth_signup():
 	else:
 		return "Invalid email address. Please use a valid @case.edu address."
 
-
+# activate
+@app.route("/auth/activate/<token>", methods=['GET'])
+def auth_activate(token):
+	plaintextEmail = confirm_email_token(token)
+	if plaintextEmail == False:
+		return "Invalid email activation token."
+	else:
+		didConfirm = confirmUser((plaintextEmail,))
+		if didConfirm == True:
+			return "Account successfully activated! Go log in."
+		else:
+			return "Unable to confirm user. Maybe your account is already activated, or your activation token expired."
 
 # Login
 @app.route('/auth/login', methods=['POST'])
@@ -195,6 +214,7 @@ def profile_removeclass():
 
 if __name__ == "__main__":
 	app.secret_key = "3sAmVAtdh!GNTSKuZJJn4^5wve"
+
 	addDefaultAccounts()
 	app.run()
 

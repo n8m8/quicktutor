@@ -15,6 +15,25 @@ def addUser(user_data):
 
     conn.close()
 
+def confirmUser(query_data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("DELETE FROM users WHERE timestamp <= date('now','-1 day');")
+
+    c.execute("SELECT email FROM users WHERE confirmed = 'FALSE' AND email=?",query_data)
+
+    fet = c.fetchone()
+    if fet is None:
+        return False
+
+    c.execute("UPDATE users SET confirmed = 'TRUE' WHERE email=?",query_data)
+
+
+    conn.commit()
+    conn.close()
+    return True
+
 def deleteUser(user_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
@@ -228,8 +247,8 @@ def addDefaultAccounts():
     modpw = generate_password_hash('Password1')
 
     try:
-        c.execute("INSERT INTO users(userid, email, password, displayname) values(null,?,?,?)", ('qtadmin@case.edu', adminpw, 'admin'))
-        c.execute("INSERT INTO users(userid, email, password, displayname) values(null,?,?,?)", ('qtmod@case.edu', modpw, 'moderator'))
+        c.execute("INSERT INTO users(userid, email, password, displayname, confirmed) values(null,?,?,?,?)", ('qtadmin@case.edu', adminpw, 'admin', True))
+        c.execute("INSERT INTO users(userid, email, password, displayname, confirmed) values(null,?,?,?,?)", ('qtmod@case.edu', modpw, 'moderator', True))
     except sqlite3.IntegrityError:
         print("Tried to add default accounts, but they already exist")
 

@@ -10,6 +10,8 @@ c.execute('''CREATE TABLE IF NOT EXISTS users (
                                 email text NOT NULL UNIQUE,
                                 password text NOT NULL,
                                 displayname text NOT NULL,
+                                confirmed boolean DEFAULT FALSE,
+                                timestamp text DEFAULT (datetime('now')),
                                 PRIMARY KEY(userid)
                                 )''')
 c.execute('''CREATE TABLE IF NOT EXISTS classes (
