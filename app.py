@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
 from flask_mail import Mail
+from flask_socketio import SocketIO, join_room, leave_room
 from werkzeug.security import generate_password_hash, check_password_hash
 import json, re
 from activation import *
@@ -230,10 +231,42 @@ def profile_removeclass():
 	dbRequests.deleteRuserClass(userId, classDept, classNum)
 	return "notImplementedException"
 
+# SocketIO
+socketio = SocketIO(app)
+
+listOfUsers = {}
+
+@app.route("/chatbox")
+def chatbox():
+	return render_template('chatbox.html')
+
+@socketio.on('set client')
+def set_client(json):
+	print(str(json))
+	server_response(json['clientID'], request.sid)
+	return 'one', 2
+
+@socketio.on('my event')
+def handle_custom_event(json):
+	print('Received JSON: ' + str(json))
+	#server_response(json['clientID'], request.sid)
+	return 'one', 2
+
+@socketio.on('to user message')
+def send_user_msg(json):
+	print(str(json))
+	socketio.emit('user message', {'data': json['msg']}, room=listOfUsers[json['uid']])
+
+def server_response(uid, sid):
+	if int(uid) > 0:
+		listOfUsers[uid] = sid
+		print(listOfUsers)
+		socketio.emit('server_response', {'data': uid}, room=sid)
+
 if __name__ == "__main__":
 	app.secret_key = "3sAmVAtdh!GNTSKuZJJn4^5wve"
 
 	addDefaultAccounts()
-	app.run()
+	socketio.run(app, host='0.0.0.0')
 
 # http://flask.pocoo.org/docs/0.12/quickstart/ #
