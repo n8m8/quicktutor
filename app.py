@@ -166,8 +166,12 @@ def listings_create():
 	location = request.form['location']
 	classID = request.form['classID']
 	description = request.form['description']
-	dbRequests.addListing(())
-	return "notImplementedException"
+	try:
+		userid = getUserIdFromEmail((email,))
+		dbRequests.addListing((userid, classID, description, location,))
+		return 'success'
+	except:
+		return "database error"
 
 # createlistings
 @app.route("/request/respond", methods=['POST'])
