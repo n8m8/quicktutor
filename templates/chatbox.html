@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	    var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+	    socket.on('connect', function() {
+	    	socket.emit('connection handshake', {data: socket.id});
+	    	//userid = document.getElementById("userid").value;
+	        socket.emit('my event', {data: 'I\'m connected!'});
+	    });
+
+	    console.log("HELLO");
+
+	    socket.on('server_response', function(msg) {
+	    	console.log('Received: ' + msg.data);
+	    });
+
+	    socket.on('user message', function(msg) {
+	    	alert(msg.data);
+	    });
+	</script>
+</head>
+
+<body>
+	<input id="userid" type="text" value="0">
+	<button onclick="setuid()">Set User</button>
+	<br>
+
+
+	<input id="touserid" type="text" value="ID Here">
+	<input id="tousermsg" type="text" value="Message Here">
+	<button onclick="touid()">Send Msg To User</button>
+	<br>
+
+	<script>
+		function setuid() {
+	    	userid = document.getElementById("userid").value;
+			socket.emit('set client', {clientID: userid});
+		}
+
+		function touid() {
+			touid = document.getElementById("touserid").value;
+			toumsg = document.getElementById("tousermsg").value;
+			socket.emit('to user message', {uid: touid, msg: toumsg})
+		}
+	</script>
+</body>
+</html>
