@@ -1,5 +1,18 @@
 Simple Text Readme Aditya Malik
 
+Entry for week 5:
+- Started off week with fixing debugging issues with flask upon running DB (found conflicting user data, had to reinstall many apps)
+- Worked on testing backend with frontend team Kian and Mammen
+- Requested and retrieved API key from Google
+- Read up on Google Maps with Flask integration and wrote up testing code for pulling Google maps API (not quite working the way I want it to)
+- pip install flask-googlemaps
+- Wrote frontend HTML code for pulling up searches on Google maps, need to integrate this with a database to store actual locations to use later for tutor requests
+- Read up documentation on marker creation, working on saving markers to SQLite3 database (implementing new create table)
+Bugs:
+- Sometimes receiving traceback errors in calling Flask GoogleMaps, was having the same issues earlier with sessions, need further investigation
+
+
+
 Entry for week 4:
 - Had group meeting to go over next steps and what each group member needs to do
 - Wrote up minutes for 2hr group meeting to go over steps and typed up in Minutes.txt
