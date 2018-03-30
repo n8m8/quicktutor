@@ -173,9 +173,13 @@ def getAllListings():
     c = conn.cursor()
 
     c.execute("SELECT * FROM listings")
-    conn.commit()
+    ret = c.fetchall()
 
+    conn.commit()
     conn.close()
+
+    return ret
+
 
 def validateUserData(user_data):
     conn = sqlite3.connect(dbname)

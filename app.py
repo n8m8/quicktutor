@@ -142,8 +142,22 @@ def auth_forgotpassword():
 # getlistings
 @app.route("/listings/getall", methods=['GET'])
 def listings_getall():
-	listings = dbRequests.getAllListings()
-	return listings
+	listings = getAllListings()
+	print(json.dumps(listings))
+
+	ret = []
+
+	for item in listings:
+		new = {}
+		new['listingid'] = item[0]
+		new['userid'] = item[1]
+		new['classid'] = item[2]
+		new['shortDescription'] = item[3]
+		new['topic'] = item[4]
+		new['timestamp'] = item[5]
+		ret.append(new)
+
+	return json.dumps(ret)
 
 # createlistings
 @app.route("/listings/create", methods=['POST'])
