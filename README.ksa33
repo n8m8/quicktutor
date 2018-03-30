@@ -1,5 +1,18 @@
 Kian Alikhani (ksa33) - EECS 395 Senior Project Readme
 
+Week 5
+# Learned SocketIO api and integration for front end/flask
+# Implemented SocketIO into frontend and backend "localhost:5000/chatbox"
+# Created backend call so that users socketio session id's are assigned to their database user id
+# Created basic front end interface to test out messaging via socket io
+# Updated UI to integrate user ids to assign which user you want to message
+# Met with Mammen to discuss final touches on front end interface
+  # User request popup
+  # Tutor request popup
+  # Chat UI and Implementation 
+# TODO: Implement SocketIO with Chat UI mammen made
+
+
 Week 3
 # Implemented Bootstrap grids into dashboard
   # Met with Mammen and designed multiple page layouts (on paper) for each web page for easier future design
