@@ -142,8 +142,22 @@ def auth_forgotpassword():
 # getlistings
 @app.route("/listings/getall", methods=['GET'])
 def listings_getall():
-	listings = dbRequests.getAllListings()
-	return listings
+	listings = getAllListings()
+	print(json.dumps(listings))
+
+	ret = []
+
+	for item in listings:
+		new = {}
+		new['listingid'] = item[0]
+		new['userid'] = item[1]
+		new['classid'] = item[2]
+		new['shortDescription'] = item[3]
+		new['topic'] = item[4]
+		new['timestamp'] = item[5]
+		ret.append(new)
+
+	return json.dumps(ret)
 
 # createlistings
 @app.route("/listings/create", methods=['POST'])
@@ -152,8 +166,12 @@ def listings_create():
 	location = request.form['location']
 	classID = request.form['classID']
 	description = request.form['description']
-	dbRequests.addListing(())
-	return "notImplementedException"
+	try:
+		userid = getUserIdFromEmail((email,))
+		dbRequests.addListing((userid, classID, description, location,))
+		return 'success'
+	except:
+		return "database error"
 
 # createlistings
 @app.route("/request/respond", methods=['POST'])

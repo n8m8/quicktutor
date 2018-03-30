@@ -4,7 +4,7 @@
 #MAIL_USERNAME = 'quicktutor@n8m8.us'
 #MAIL_PASSWORD = 'Quicktutorpassword1'
 #MAIL_DEFAULT_SENDER = 'quicktutor@n8m8.us'
-
+DEBUG = True
 MAIL_SERVER = 'smtp.gmail.com'
 MAIL_USE_SSL = True
 MAIL_USE_TSL = True

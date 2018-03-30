@@ -86,6 +86,18 @@ def deleteRuserClass(query_data):
 
     conn.close()
 
+def getUserIdFromEmail(query_data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT userid FROM users WHERE email=?",query_data)
+
+    ret = c.fetchone()
+    conn.commit()
+    conn.close()
+
+    return ret
+
 def addListing(listing_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
@@ -94,6 +106,7 @@ def addListing(listing_data):
     conn.commit()
 
     conn.close()
+    return c.lastrowid
 
 def deleteListing(listing_data):
     conn = sqlite3.connect(dbname)
@@ -173,9 +186,13 @@ def getAllListings():
     c = conn.cursor()
 
     c.execute("SELECT * FROM listings")
-    conn.commit()
+    ret = c.fetchall()
 
+    conn.commit()
     conn.close()
+
+    return ret
+
 
 def validateUserData(user_data):
     conn = sqlite3.connect(dbname)
