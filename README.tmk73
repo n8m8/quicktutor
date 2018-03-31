@@ -1,3 +1,11 @@
+Week 5:
+Met with Kian and Aditya about changing elements to the front end including chat and lists.
+Styled the Chatbox
+Added Exit, Minimize and Output fields.
+Added Javascript elements to hide and maximise the window (found a few bugs)
+Read about Javascript and it's integration with html and css.
+
+
 Week 4:
 Created a simple chat UI on a seperate page.
 Successfully pushed request data to the database.
