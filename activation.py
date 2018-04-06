@@ -21,9 +21,12 @@ def confirm_email_token(token):
         return False
     return email
 
-def send(to, token):
+def sendActivationEmail(to, token):
     html = render_template('activate.html', activationUrl=url_for('auth_activate', token=token, _external=True))
-    msg = Message("Confirm Your QuickTutor Email", recipients=[to], html=html, sender="quicktutor@n8m8.us")
-    print('boutta send')
+    msg = Message("Confirm Your QuickTutor Email", recipients=[to], html=html, sender="quicktutorCWRU@gmail.com")
     mail.send(msg)
-    print('sent message')
+
+def sendResetPasswordEmail(to, pw):
+    html = render_template('forgotpassword.html', password=pw)
+    msg = Message("QuickTutor Password Reset", recipients=[to], html=html, sender="quicktutorCWRU@gmail.com")
+    mail.send(msg)

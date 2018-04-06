@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, session, jsonify
 from flask_mail import Mail
 from flask_socketio import SocketIO, join_room, leave_room
 from werkzeug.security import generate_password_hash, check_password_hash
-import json, re
+import json, re, string, random
 from activation import *
 from dbRequests import *
 import config
@@ -65,7 +65,7 @@ def auth_signup():
 			if pwResult != None:
 				addUser((email, generate_password_hash(password), email,))
 				activationToken = make_email_token(email)
-				send(email, activationToken)
+				sendActivationEmail(email, activationToken)
 				return 'Almost done! Check your email to activate your account.'
 			else:
 				return "Password did not meet strength requirements."
@@ -86,6 +86,24 @@ def auth_activate(token):
 			return "Account successfully activated! Go log in."
 		else:
 			return "Unable to confirm user. Maybe your account is already activated, or your activation token expired."
+
+
+# forgotPassword
+@app.route("/auth/forgotpassword", methods=['POST'])
+def auth_forgotpassword():
+	email = request.form['email']
+
+	userid = getUserIdFromEmail((email,))
+	if userid is None:
+		return "There is no account associated with that email address!"
+	else:
+		newpassword = ""
+		while len(newpassword) < 8:
+			newpassword = newpassword + random.choice(string.ascii_letters + string.digits)
+			changeUserPassword((generate_password_hash(newpassword), email,))
+
+		return "Your password was reset! Check your email for your new password."
+
 
 # Login
 @app.route('/auth/login', methods=['POST'])
@@ -149,12 +167,6 @@ def request_getUserInfo():
 	if request.method == 'GET':
 		sampleJsonData = '[{"userid": 1, "email": "test@case.edu", "password": "password", "displayname": "TestUser"}]'
 		return sampleJsonData
-# forgotPassword
-@app.route("/auth/forgotpassword/", methods=['POST'])
-def auth_forgotpassword():
-	email = request.form['email']
-	return "notImplementedException"
-
 
 ### Main Activity Page / Listings ###
 # getlistings

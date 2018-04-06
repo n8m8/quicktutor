@@ -36,6 +36,15 @@ def confirmUser(query_data):
     conn.close()
     return True
 
+def changeUserPassword(query_data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("UPDATE users SET password=? WHERE email=?",query_data)
+
+    conn.commit()
+    conn.close()
+
 def deleteUser(user_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
