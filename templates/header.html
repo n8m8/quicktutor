@@ -9,10 +9,10 @@
 </div>
 
 <script type="text/javascript">
-	var data = $.get( "/request/getBasicInfo", {}).then(function (response) {
+	var data = $.get( "/profile/get", {}).then(function (response) {
     response = JSON.parse(response)
 		console.log(response)
-		document.getElementById('headerString').innerHTML = 'Welcome to the dashboard, ' + response.username
+		document.getElementById('headerString').innerHTML = 'Welcome to the dashboard, ' + response.screenname
 	});
 	//console.log(data)
 </script>

@@ -139,29 +139,6 @@ def logout():
 	session['admin'] = False
 	return redirect('/')
 
-@app.route('/request/getBasicInfo', methods=['GET'])
-def request_getBasicInfo():
-	if request.method == 'GET':
-		if 'user_name' in session:
-			ret = {}
-			ret['username']= {}
-			ret['username'] = getUsernameFromUserEmail((session['user_name'],))
-			userClassIds = getClassesForUser((session['user_name'],))
-			if userClassIds is None:
-				ret['classes'] = []
-			else:
-				ret['classes'] = []
-				for classid in userClassIds:
-					newclass = {}
-					newclass['classid'] = classid[0]
-					newclass['stringName'] = getClassStringName(classid)
-					ret['classes'].append(newclass)
-			return json.dumps(ret)
-		else:
-			return "User did not exist"
-	else:
-		return "Invalid protocol for this route, use GET"
-
 @app.route('/request/getUserInfo', methods=['GET'])
 def request_getUserInfo():
 	if request.method == 'GET':
@@ -233,13 +210,33 @@ def msg_receive():
 # get a profile
 @app.route("/profile/get", methods=['GET'])
 def profile_get():
-	return "notImplementedException"
+	if request.method == 'GET':
+		if 'user_name' in session:
+			ret = {}
+			ret['email'] = session['user_name']
+			ret['screenname'] = getUsernameFromUserEmail((session['user_name'],))
+			userClassIds = getClassesForUser((session['user_name'],))
+			if userClassIds is None:
+				ret['classes'] = []
+			else:
+				ret['classes'] = []
+				for classid in userClassIds:
+					newclass = {}
+					newclass['classid'] = classid[0]
+					newclass['stringName'] = getClassStringName(classid)
+					ret['classes'].append(newclass)
+			return json.dumps(ret)
+		else:
+			return "User did not exist"
+	else:
+		return "Invalid protocol for this route, use GET"
 
 # ChangeScreenName
 @app.route("/profile/changescreenname", methods=['POST'])
 def profile_changescreenname():
 	newName = request.form['newName']
-	return "notImplementedException"
+	changeUserScreenname((newName, session['user_name']))
+	return "Changed screennname!"
 
 # AddClass
 @app.route("/profile/addclass", methods=['POST'])

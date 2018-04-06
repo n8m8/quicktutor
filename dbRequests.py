@@ -263,6 +263,15 @@ def getUsernameFromUserEmail(data):
     conn.close()
     return name
 
+def changeUserScreenname(query_data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("UPDATE users SET displayname=? WHERE email=?", query_data)
+
+    conn.commit()
+    conn.close()
+
 def checkPassword(query_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
