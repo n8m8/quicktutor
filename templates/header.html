@@ -10,8 +10,9 @@
 
 <script type="text/javascript">
 	var data = $.get( "/request/getBasicInfo", {}).then(function (response) {
+    response = JSON.parse(response)
 		console.log(response)
-		document.getElementById('headerString').innerHTML = 'Welcome to the dashboard, ' + response
+		document.getElementById('headerString').innerHTML = 'Welcome to the dashboard, ' + response.username
 	});
 	//console.log(data)
 </script>
