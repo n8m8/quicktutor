@@ -15,7 +15,10 @@ mail = Mail(app)
 
 @app.route("/")
 def index():
-	return render_template('index.html')
+	if session['logged_in'] == True:
+		return redirect('/dashboard')
+	else:
+		return render_template('index.html')
 
 @app.route("/test")
 def test():
@@ -158,7 +161,6 @@ def auth_forgotpassword():
 @app.route("/listings/getall", methods=['GET'])
 def listings_getall():
 	listings = getAllListings()
-	print(json.dumps(listings))
 
 	ret = []
 
