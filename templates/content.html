@@ -1,2 +1,9 @@
 <p>TUTOR REQUESTS WILL GO HERE</p>
 <p>CHAT WINDOWS WILL BE LOCATED BELOW</p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  $.get('/listings/getall', function(data) {
+    console.log(data)
+  })
+</script>
