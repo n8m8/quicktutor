@@ -114,6 +114,8 @@ def login():
 @app.route('/auth/logout', methods=['POST'])
 def logout():
 	session.pop('user_name', None)
+	session['logged_in'] = False
+	session['admin'] = False
 	return redirect('/')
 
 @app.route('/request/getBasicInfo', methods=['GET'])
