@@ -86,6 +86,30 @@ def deleteRuserClass(query_data):
 
     conn.close()
 
+def getClassesForUser(user_data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT r_classid FROM ruserclasses WHERE r_userid= (SELECT userid FROM users WHERE email=?)", user_data)
+    classes = c.fetchall()
+
+    conn.close()
+
+    return classes
+
+def getClassStringName(query_data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+    print(query_data)
+    c.execute("SELECT dept, c_number FROM classes WHERE classid=?",query_data)
+    deptNumPair = c.fetchone()
+    conn.close()
+
+    if deptNumPair is None:
+        return ""
+    else:
+        return str(deptNumPair[0]) + " " + str(deptNumPair[1])
+
 def getUserIdFromEmail(query_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
@@ -200,8 +224,6 @@ def validateUserData(user_data):
 
     c.execute("SELECT userid FROM users WHERE email=? AND password=?", user_data)
 
-    print(c)
-
     ret = c.fetchone()
     conn.close()
     if ret is None:
@@ -226,7 +248,7 @@ def getUsernameFromUserEmail(data):
     c = conn.cursor()
 
     c.execute("SELECT displayname FROM users WHERE email=?", data)
-    name = c.fetchone()
+    name = c.fetchone()[0]
 
     conn.commit()
     conn.close()
@@ -250,7 +272,6 @@ def lookupUserIdFromEmail(query_data):
     c.execute("SELECT userid FROM users WHERE email=?", query_data)
 
     userid = c.fetchone()
-    print(userid)
 
     conn.commit()
     conn.close()

@@ -119,9 +119,21 @@ def logout():
 @app.route('/request/getBasicInfo', methods=['GET'])
 def request_getBasicInfo():
 	if request.method == 'GET':
-		print(session)
 		if 'user_name' in session:
-			return getUsernameFromUserEmail((session['user_name'],))
+			ret = {}
+			ret['username']= {}
+			ret['username'] = getUsernameFromUserEmail((session['user_name'],))
+			userClassIds = getClassesForUser((session['user_name'],))
+			if userClassIds is None:
+				ret['classes'] = []
+			else:
+				ret['classes'] = []
+				for classid in userClassIds:
+					newclass = {}
+					newclass['classid'] = classid[0]
+					newclass['stringName'] = getClassStringName(classid)
+					ret['classes'].append(newclass)
+			return json.dumps(ret)
 		else:
 			return "User did not exist"
 	else:
