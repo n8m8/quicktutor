@@ -1,5 +1,14 @@
 Simple Text Readme Aditya Malik
 
+Entry for week 6:
+- Worked on routing front end listing to backend database
+- Read up on possibility of using PHP as an alternative if we continue to request issues
+- Added  HTML edits on listings
+- Wrote javascript code for sendingDataTest, continuing to test through this
+
+Bugs:
+- Cookies causing crashes when loading database from python app.py
+
 Entry for week 5:
 - Started off week with fixing debugging issues with flask upon running DB (found conflicting user data, had to reinstall many apps)
 - Worked on testing backend with frontend team Kian and Mammen

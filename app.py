@@ -15,8 +15,11 @@ mail = Mail(app)
 
 @app.route("/")
 def index():
-	if session['logged_in'] == True:
-		return redirect('/dashboard')
+	if hasattr(session, 'logged in'):
+		if session['logged_in'] == True:
+			return redirect('/dashboard')
+		else:
+			return render_template('index.html')
 	else:
 		return render_template('index.html')
 
@@ -160,21 +163,22 @@ def listings_getall():
 		new['classid'] = item[2]
 		new['shortDescription'] = item[3]
 		new['topic'] = item[4]
-		new['timestamp'] = item[5]
+		new['location'] = item[5]
+		new['timestamp'] = item[6]
 		ret.append(new)
 
 	return json.dumps(ret)
 
 # createlistings
-@app.route("/listings/create", methods=['POST'])
+@app.route("/request/submitTestForm", methods=['POST'])
 def listings_create():
-	email = request.form['email']
-	location = request.form['location']
 	classID = request.form['classID']
-	description = request.form['description']
+	topic = request.form['requestTopic']
+	location = request.form['requestLocation']
+	description = request.form['requestDescription']
 	try:
 		userid = getUserIdFromEmail((email,))
-		dbRequests.addListing((userid, classID, description, location,))
+		dbRequests.addListing((userid, classID, description, topic, location,))
 		return 'success'
 	except:
 		return "database error"
