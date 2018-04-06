@@ -48,7 +48,7 @@ def auth_signup():
 	password = request.form['signuppassword']
 
 	# Validate email
-	regex = re.compile('(^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail)\.com$)')
+	regex = re.compile('(^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(case)\.edu$)')
 	regexResult = regex.match(email)
 
 	# Validate Password
