@@ -247,17 +247,16 @@ def profile_addclass():
 
 	classDept = request.form['classDept']
 	classNum = request.form['classNum']
-	dbRequests.addRuserClass(session['user_name'], classDept, classNum)
-	return "notImplementedException"
+	addRuserClass((session['user_name'], classDept, classNum,))
+	return "Added your class!"
 
 # RemoveClass
 @app.route("/profile/removeclass", methods=['POST'])
 def profile_removeclass():
-	userId = request.form['userId']
 	classDept = request.form['classDept']
 	classNum = request.form['classNum']
-	dbRequests.deleteRuserClass(userId, classDept, classNum)
-	return "notImplementedException"
+	deleteRuserClass((session['user_name'], classDept, classNum,))
+	return "Removed your class!"
 
 # SocketIO
 socketio = SocketIO(app)

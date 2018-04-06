@@ -77,9 +77,9 @@ def addRuserClass(query_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    classId = c.execute("SELECT classid FROM classes WHERE dept=? AND cnumber=?)", query_data)
+    # classId = c.execute("SELECT classid FROM classes WHERE dept=? AND cnumber=?)", query_data)
 
-    c.execute("INSERT INTO ruserclasses(r_userid, r_classid) VALUES(?,?)", query_data)
+    c.execute("INSERT INTO ruserclasses(r_userid, r_classid) VALUES((SELECT userid FROM users WHERE email=?),(SELECT classid FROM classes WHERE dept=? AND c_number=?))", query_data)
     conn.commit()
 
     conn.close()
@@ -88,9 +88,9 @@ def deleteRuserClass(query_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    classId = c.execute("SELECT classid FROM classes WHERE dept=? AND cnumber=?)", query_data)
+    c.execute("SELECT classid FROM classes WHERE dept=? AND cnumber=?)", query_data)
 
-    c.execute("DELETE FROM ruserclasses WHERE r_userid=? AND r_classid=?", query_data)
+    c.execute("DELETE FROM ruserclasses WHERE r_userid=(SELECT userid FROM users WHERE email=?) AND r_classid=(SELECT classid FROM classes WHERE dept=? AND c_number=?)", query_data)
     conn.commit()
 
     conn.close()
