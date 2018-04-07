@@ -1,5 +1,15 @@
 Kian Alikhani (ksa33) - EECS 395 Senior Project Readme
 
+Week 6
+# Integrated SocketIO with existing dashboard
+# Created chat UI template to be used for each chat session between tutor and users
+# Styled the chat UI to better integrate with bootstrap tools and grids
+# Connected new chat UI with socket io sessions
+# Implemented javascript to dynamically add html and styling to chat UI, based on whether you receive or send a message
+# Integrated socket IO (mostly working as long as 2 users are only logged in) with chat UI 
+  # Uses dictionary in backend to link socketio session ids with flask session ids
+  # users can message eachother with little to no latency between send and receive
+
 Week 5
 # Learned SocketIO api and integration for front end/flask
 # Implemented SocketIO into frontend and backend "localhost:5000/chatbox"
@@ -11,7 +21,6 @@ Week 5
   # Tutor request popup
   # Chat UI and Implementation 
 # TODO: Implement SocketIO with Chat UI mammen made
-
 
 Week 3
 # Implemented Bootstrap grids into dashboard
