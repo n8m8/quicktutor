@@ -1,6 +1,6 @@
 Nathan Walls (nfw10) Senior Project README
 ### Week 5 ###
-# Help fix weird bug that didn't happen on my computer
+# Help fix weird bug that didn't happen on my computer with mammen involving sessions (app.py)
 # fully implement get user information web service (app.py, dbRequests.py)
 # implement forgotten password reset web services (app.py, dbRequests.py, activation.py)
 # fix bugs involving cookies, login tokens and how they're stored in flask (app.py)
