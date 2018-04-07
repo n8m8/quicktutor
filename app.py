@@ -263,6 +263,34 @@ def profile_removeclass():
 socketio = SocketIO(app)
 
 listOfUsers = {}
+socketIODict = {}
+
+@socketio.on('initConnection')
+def init_connection(json):
+	sessionID = request.cookies.get('session')
+	socketID = request.sid
+	socketIODict[sessionID] = socketID;
+
+@socketio.on('chat msg send')
+def chat_msg_send(json):
+	message = json['message']
+	sessionID = request.cookies.get('session')
+	sendMessageToRecipient(sessionID, message)
+
+def sendMessageToRecipient(sessionID, message):
+	connectedUserKeys = socketIODict.keys()
+	for key in connectedUserKeys:
+		if sessionID != key:
+			recvSessionID = key
+	socketio.emit('chat msg recv', {'data': message}, room=socketIODict[recvSessionID])
+
+# METHOD FOR TUTOR CHATBOX HANDSHAKE
+# After user accepts tutor request, this code runs
+'''
+	Chatbox is opened up on user with send location = tutor sessionID
+	Chatbox is opened upon tutor with send location = user sessionID
+	Messages are sent using same method, with destination = send location
+'''
 
 @app.route("/chatbox")
 def chatbox():
