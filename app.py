@@ -15,7 +15,7 @@ mail = Mail(app)
 
 @app.route("/")
 def index():
-	if hasattr(session, 'logged in'):
+	if hasattr(session, 'logged_in'):
 		if session['logged_in'] == True:
 			return redirect('/dashboard')
 		else:
