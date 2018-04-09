@@ -135,7 +135,7 @@ def addListing(listing_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("INSERT INTO listings(listingid, l_userid, l_classid, shortDescription, topic, time_Stamp) VALUES(null,?,?,?,?,null)", listing_data)
+    c.execute("INSERT INTO listings(listingid, l_userid, l_classid, shortDescription, topic, l_location, time_Stamp) VALUES(null,?,?,?,?,?,null)", listing_data)
     conn.commit()
 
     conn.close()
