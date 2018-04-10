@@ -135,7 +135,7 @@ def addListing(listing_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("INSERT INTO listings(listingid, l_userid, l_classid, shortDescription, topic, l_location, time_Stamp) VALUES(null,?,?,?,?,?,null)", listing_data)
+    c.execute("INSERT INTO listings(listingid, l_userid, l_classid, shortDescription, topic, l_location, time_Stamp) VALUES(null,(SELECT userid FROM users WHERE email=?),?,?,?,?,(SELECT datetime('now')))", listing_data)
     conn.commit()
 
     conn.close()
@@ -213,6 +213,24 @@ def getAllClasses():
     conn.commit()
 
     conn.close()
+
+def getClassIdFromName(className):
+    tokens = className.split(" ")
+    dept = tokens[0]
+    num = tokens[1]
+
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT classid FROM classes WHERE dept=? AND c_number=? LIMIT 1", (dept, num,))
+
+    ret = c.fetchone()
+    conn.commit()
+    conn.close()
+    if ret is None:
+        return -1
+    else:
+        return ret[0]
 
 def getAllListings():
     conn = sqlite3.connect(dbname)

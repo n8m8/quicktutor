@@ -170,18 +170,15 @@ def listings_getall():
 	return json.dumps(ret)
 
 # createlistings
-@app.route("/request/submitTestForm", methods=['POST'])
+@app.route("/listings/create", methods=['POST'])
 def listings_create():
-	classID = request.form['classID']
+	className = request.form['className']
 	topic = request.form['requestTopic']
 	location = request.form['requestLocation']
 	description = request.form['requestDescription']
-	try:
-		userid = getUserIdFromEmail((email,))
-		dbRequests.addListing((userid, classID, description, topic, location,))
-		return 'success'
-	except:
-		return "database error"
+	classId = getClassIdFromName(className)
+	addListing((session['user_name'], classId, description, topic, location,))
+	return 'success'
 
 # createlistings
 @app.route("/request/respond", methods=['POST'])
