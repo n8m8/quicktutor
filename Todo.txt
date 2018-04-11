@@ -1,24 +1,21 @@
-Login Page:
-~~~1. Valid user/pass check~~~ (Nathan 3/23)
+# Front End
+1) Finish GUI to display all listings
+2) Send request from GUI to accept listing
+3) Edit profile screen
+4) Forgot password link
+5) Tell user what password strength requirements are
 
-Sign Up:
-~~~1. Verification of case.edu account~~~ (Nathan 3/23)
-~~~2. Password requirements~~~ (Nathan 3/23)
 
-Cookies:
-1. On successful login, assign userID to frontend
+# Back End
+1) Fix memory leak bug with socketio, clear dict on logout
+2) Send a socketIO upon posting a request to push notifications for other users
+3) Write web service that handles accepting request
+  a) Add pair to database
+  b) Open a socketIO between tutee and tutor to start chat
+4) Fix bug allowing unconfirmed user to log in
 
-Chat:
-1. SocketIO [userID used as primary identifier]
-
-Submit New Request:
-1. Receive proper data
-2. Store in DB
-3. Initiate protocol b/w tutor and user (aka tutee)
-    - User sends request and goes to the backend
-    - Tutors receive requests (SocketIO) ~ refresh every 30 seconds to pull from backend
-    - User accepts/denies requests (goes to backend)
-    - Initiate chat protocol
-
-Test:
-~~~1. Create two test users by hardcode (admin and another user)~~~ (Nathan 3/21)
+# Later lower priority stuff
+1) Flask flashing
+2) SocketIO everything
+3) Touch up presentation layer
+4) Fix chatbox bugs on GUI 
