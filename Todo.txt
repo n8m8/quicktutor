@@ -8,11 +8,11 @@
 
 # Back End
 ~~~1) Fix memory leak bug with socketio, clear dict on logout~~~
-2) Send a socketIO upon posting a request to push notifications for other users
-3) Write web service that handles accepting request
+~~~2) Send a socketIO upon posting a request to push notifications for other users~~~
+~~~3) Write web service that handles accepting request
   a) Add pair to database
-  b) Open a socketIO between tutee and tutor to start chat
-4) Fix bug allowing unconfirmed user to log in
+  b) Open a socketIO between tutee and tutor to start chat~~~
+~~~4) Fix bug allowing unconfirmed user to log in~~~
 
 # Later lower priority stuff
 1) Flask flashing

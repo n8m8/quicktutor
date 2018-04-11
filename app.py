@@ -184,8 +184,9 @@ def listings_create():
 	message['topic'] = topic
 	message['location'] = location
 	message['description'] = description
+	message['userid'] = getUserIdFromEmail(session['user_name'])
 	socketio.emit('new listing', message, broadcast=True)
-	return 'success'
+	return message
 
 # createlistings
 @app.route("/request/respond", methods=['POST'])
