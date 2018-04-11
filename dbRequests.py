@@ -79,7 +79,7 @@ def addRuserClass(query_data):
 
     # classId = c.execute("SELECT classid FROM classes WHERE dept=? AND cnumber=?)", query_data)
 
-    c.execute("INSERT INTO ruserclasses(r_userid, r_classid) VALUES((SELECT userid FROM users WHERE email=?),(SELECT classid FROM classes WHERE dept=? AND c_number=?))", query_data)
+    c.execute("INSERT INTO ruserclasses(r_userid, r_classid) VALUES((SELECT userid FROM users WHERE email=?),?)", query_data)
     conn.commit()
 
     conn.close()
@@ -124,6 +124,18 @@ def getUserIdFromEmail(query_data):
     c = conn.cursor()
 
     c.execute("SELECT userid FROM users WHERE email=?",query_data)
+
+    ret = c.fetchone()
+    conn.commit()
+    conn.close()
+
+    return ret
+
+def getEmailFromUserid(query_data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT email FROM users WHERE userid=?",query_data)
 
     ret = c.fetchone()
     conn.commit()
@@ -261,7 +273,7 @@ def getHashedPassword(query_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
 
-    c.execute("SELECT password FROM users WHERE email=?", query_data)
+    c.execute("SELECT password FROM users WHERE email=? AND confirmed='TRUE'", query_data)
 
     hashedPassword = c.fetchone()
     conn.close()

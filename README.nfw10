@@ -1,4 +1,10 @@
 Nathan Walls (nfw10) Senior Project README
+### Week 6 ###
+# Touch up socketio code, try to start making it actually work rather than depend on only 2 users in the database (app.py, dbRequests.py)
+# Fix bug allowing user to log in before activating (app.py, dbRequests.py)
+# Hopefully fix memory leak (app.py)
+# Fix Aditya's bug not properly adding new listings (app.py)
+
 ### Week 5 ###
 # Help fix weird bug that didn't happen on my computer with mammen involving sessions (app.py)
 # fully implement get user information web service (app.py, dbRequests.py)

@@ -137,6 +137,7 @@ def login():
 
 @app.route('/auth/logout', methods=['POST'])
 def logout():
+	del socketIODict[request.cookies.get('session')]
 	session.pop('user_name', None)
 	session['logged_in'] = False
 	session['admin'] = False
@@ -178,6 +179,12 @@ def listings_create():
 	description = request.form['requestDescription']
 	classId = getClassIdFromName(className)
 	addListing((session['user_name'], classId, description, topic, location,))
+	message = {}
+	message['className'] = request.form['className']
+	message['topic'] = topic
+	message['location'] = location
+	message['description'] = description
+	socketio.emit('new listing', message, broadcast=True)
 	return 'success'
 
 # createlistings
@@ -264,22 +271,28 @@ socketIODict = {}
 
 @socketio.on('initConnection')
 def init_connection(json):
-	sessionID = request.cookies.get('session')
+	# sessionID = request.cookies.get('session')
 	socketID = request.sid
-	socketIODict[sessionID] = socketID;
+	socketIODict[session['user_name']] = socketID;
 
 @socketio.on('chat msg send')
 def chat_msg_send(json):
 	message = json['message']
-	sessionID = request.cookies.get('session')
-	sendMessageToRecipient(sessionID, message)
+	# sessionID = request.cookies.get('session')
+	receiver = json['recipientUserId']
+	sendMessageToRecipient(receiver, message)
 
-def sendMessageToRecipient(sessionID, message):
-	connectedUserKeys = socketIODict.keys()
-	for key in connectedUserKeys:
-		if sessionID != key:
-			recvSessionID = key
-	socketio.emit('chat msg recv', {'data': message}, room=socketIODict[recvSessionID])
+def sendMessageToRecipient(recipientUserId, message):
+	#connectedUserKeys = socketIODict.keys()
+	#for key in connectedUserKeys:
+	#	if sessionID != key:
+	#		recvSessionID = key
+	socketio.emit('chat msg recv', {'data': message}, room=socketIODict[getEmailFromUserid((recipientUserId,))])
+
+@socketio.on('tutor accepted')
+def tutor_accepted(json):
+ 	addRuserClass((session['user_name'], json['classid']))
+	sendMessageToRecipient(json['recipientUserId'], "I just accepted your tutor request. Please help!")
 
 # METHOD FOR TUTOR CHATBOX HANDSHAKE
 # After user accepts tutor request, this code runs

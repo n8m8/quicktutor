@@ -7,7 +7,7 @@
 
 
 # Back End
-1) Fix memory leak bug with socketio, clear dict on logout
+~~~1) Fix memory leak bug with socketio, clear dict on logout~~~
 2) Send a socketIO upon posting a request to push notifications for other users
 3) Write web service that handles accepting request
   a) Add pair to database
@@ -18,4 +18,4 @@
 1) Flask flashing
 2) SocketIO everything
 3) Touch up presentation layer
-4) Fix chatbox bugs on GUI 
+4) Fix chatbox bugs on GUI
