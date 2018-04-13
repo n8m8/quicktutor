@@ -70,16 +70,16 @@ def auth_signup():
 				addUser((email, generate_password_hash(password), email,))
 				activationToken = make_email_token(email)
 				sendActivationEmail(email, activationToken)
-                flash("Almost done! Check your email to activate your account.")
+				flash("Almost done! Check your email to activate your account.")
 				# return 'Almost done! Check your email to activate your account.'
 			else:
-                flash("Password did not meet strength requirements.")
+				flash("Password did not meet strength requirements.")
 				# return "Password did not meet strength requirements."
 		else:
-            flash("That email is already taken!")
+			flash("That email is already taken!")
 			# return "That email is already taken!"
 	else:
-        flash("Invalid email address. Please use a valid @case.edu address.")
+		flash("Invalid email address. Please use a valid @case.edu address.")
 		# return "Invalid email address. Please use a valid @case.edu address."
 
 # activate
@@ -87,15 +87,15 @@ def auth_signup():
 def auth_activate(token):
 	plaintextEmail = confirm_email_token(token)
 	if plaintextEmail == False:
-        flash("Invalid email activation token.")
+		flash("Invalid email activation token.")
 		# return "Invalid email activation token."
 	else:
 		didConfirm = confirmUser((plaintextEmail,))
 		if didConfirm == True:
-            flash("Account successfully activated! Go log in.")
+			flash("Account successfully activated! Go log in.")
 			# return "Account successfully activated! Go log in."
 		else:
-            flash("Unable to confirm user. Maybe your account is already activated, or your activation token expired.")
+			flash("Unable to confirm user. Maybe your account is already activated, or your activation token expired.")
 			# return "Unable to confirm user. Maybe your account is already activated, or your activation token expired."
 
 
@@ -106,7 +106,7 @@ def auth_forgotpassword():
 
 	userid = getUserIdFromEmail((email,))
 	if userid is None:
-        flash("There is no account associated with that email address!")
+		flash("There is no account associated with that email address!")
 		# return "There is no account associated with that email address!"
 	else:
 		newpassword = ""
@@ -114,8 +114,8 @@ def auth_forgotpassword():
 			newpassword = newpassword + random.choice(string.ascii_letters + string.digits)
 			changeUserPassword((generate_password_hash(newpassword), email,))
 
-        flash("Your password was reset! Check your email for your new password.")
-        # return "Your password was reset! Check your email for your new password."
+			flash("Your password was reset! Check your email for your new password.")
+			# return "Your password was reset! Check your email for your new password."
 
 
 # Login
@@ -126,7 +126,7 @@ def login():
 	hashedPassword = getHashedPassword((request.form['loginemail'],))
 
 	if hashedPassword is None:
-        flash("There is no account associated with that email address.")
+		flash("There is no account associated with that email address.")
 		# return "There is no account associated with that email address."
 
 	matches = check_password_hash(hashedPassword, request.form['loginpassword'])
@@ -142,7 +142,7 @@ def login():
 		session['admin'] = False
 		session['logged_in'] = False
 		print(session)
-        flash("Login information was not valid.")
+		flash("Login information was not valid.")
 		# return "Login information was not valid."
 
 	return redirect('/dashboard')
@@ -248,10 +248,10 @@ def profile_get():
 					ret['classes'].append(newclass)
 			return json.dumps(ret)
 		else:
-            flash("User did not exist")
+			flash("User did not exist")
 			# return "User did not exist"
 	else:
-        flash("Invalid protocol for this route, use GET")
+		flash("Invalid protocol for this route, use GET")
 		# return "Invalid protocol for this route, use GET"
 
 # ChangeScreenName
@@ -259,7 +259,7 @@ def profile_get():
 def profile_changescreenname():
 	newName = request.form['newName']
 	changeUserScreenname((newName, session['user_name']))
-    flash("Changed screennname!")
+	flash("Changed screennname!")
 	# return "Changed screennname!"
 
 # AddClass
@@ -269,7 +269,7 @@ def profile_addclass():
 	classDept = request.form['classDept']
 	classNum = request.form['classNum']
 	addRuserClass((session['user_name'], classDept, classNum,))
-    flash("Added your class!")
+	flash("Added your class!")
 	# return "Added your class!"
 
 # RemoveClass
@@ -278,7 +278,7 @@ def profile_removeclass():
 	classDept = request.form['classDept']
 	classNum = request.form['classNum']
 	deleteRuserClass((session['user_name'], classDept, classNum,))
-    flash("Removed your class!")
+	flash("Removed your class!")
 	# return "Removed your class!"
 
 # SocketIO
@@ -309,8 +309,8 @@ def sendMessageToRecipient(recipientUserId, message):
 
 @socketio.on('tutor accepted')
 def tutor_accepted(json):
-    addRuserClass((session['user_name'], json['classid']))
-    sendMessageToRecipient(json['recipientUserId'], "I just accepted your tutor request. Please help!")
+	addRuserClass((session['user_name'], json['classid']))
+	sendMessageToRecipient(json['recipientUserId'], "I just accepted your tutor request. Please help!")
 
 # METHOD FOR TUTOR CHATBOX HANDSHAKE
 # After user accepts tutor request, this code runs
