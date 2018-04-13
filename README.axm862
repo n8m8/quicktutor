@@ -3,9 +3,10 @@ Entry for week 7:
 - Met with Kian and Nathan to discuss next steps on Todo
 - Read up documentation on Flask Flash
 - Wrote and implemented flask flash in areas necessary with front-end and backend code
+- Worked on bug fixes from previous entries 
 
-Bugs: 
-- Indentation errors found various times
+Bugs:
+- Indentation errors found various times (FIXED)
 
 Entry for week 6:
 - Worked on routing front end listing to backend database
@@ -14,7 +15,7 @@ Entry for week 6:
 - Wrote javascript code for sendingDataTest, continuing to test through this
 
 Bugs:
-- Cookies causing crashes when loading database from python app.py
+- Cookies causing crashes when loading database from python app.py (FIXED)
 
 Entry for week 5:
 - Started off week with fixing debugging issues with flask upon running DB (found conflicting user data, had to reinstall many apps)
@@ -66,4 +67,4 @@ Entry for week 1:
 - Found a few bugs in the original database design which we need to fix together as a team
 - Will continue to read through the documentation of SQLite3 w/ Python to make sure things go smoothly
 Problems:
-- We have tutorID as another foreign key but what is it referencing? -> Discuss with Nathan
+- We have tutorID as another foreign key but what is it referencing? -> Discuss with Nathan (FIXED)
