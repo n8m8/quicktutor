@@ -1,5 +1,12 @@
 Kian Alikhani (ksa33) - EECS 395 Senior Project Readme
 
+Week 7
+# Fixed many visual bugs on front end
+# Cleaned up erreneous code
+# Added edit profile options and form configuration
+# Modified edit profile to work with bootstrap modals
+# Bootstrap modals used to prompt user for input on profile fields
+
 Week 6
 # Integrated SocketIO with existing dashboard
 # Created chat UI template to be used for each chat session between tutor and users
