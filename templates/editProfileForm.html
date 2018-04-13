@@ -1,0 +1,130 @@
+<form>
+	<div class="form-group">
+		<label id="name">Name: </label><br>
+		<label id="usernameLabel">Display Name: </label>
+		<input id="username" placeholder="Enter New Display Name" value="John Doe"><br>
+		<label id="majorLabel">Major(s): </label>
+		<select id="majorList">
+		</select>
+		<!-- <button type="button" class="btn btn-success btn-xs" onclick="addMajorOption()">Add Major</button> -->
+		<button type="button" class="btn btn-danger btn-xs" onclick="delMajorOption()">Del Major</button><br>
+		<!-- drop down with list of majors and add major option -->
+		<label id="classLabel">Classes Taken:</label>
+		<select id="classTakenList">
+		</select>
+		<button type="button" class="btn btn-success btn-xs" onclick="addClassTakenOption()">Add Class</button>
+		<button type="button" class="btn btn-danger btn-xs" onclick="delClassTakenOption()">Del Class</button><br>
+		<!-- drop down list with classes taken and add class option -->
+		<label id="classLabel">Classes Enrolled In:</label>
+		<select id="classEnrolledList">
+		</select>
+		<button type="button" class="btn btn-success btn-xs" onclick="addClassEnrollOption()">Add Class</button>
+		<button type="button" class="btn btn-danger btn-xs" onclick="delClassEnrollOption()">Del Class</button><br>
+		<!-- drop down list with classes enrolled in and add class option -->
+	</div>
+</form>
+
+<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#addMajorModal">Add Major</button>
+<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#addClassTakenModal">Add Class Taken</button>
+<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#addClassEnrollModal">Add Class Enrolled</button>
+
+<div class="modal fade" id="addMajorModal" tabindex="-1" role="dialog" aria-labelledby="addMajorModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Add Major</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				ADD MAJOR STUFF HERE
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="addClassTakenModal" tabindex="-1" role="dialog" aria-labelledby="addClassTakenModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Add Class</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				ADD CLASS STUFF HERE
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="addClassEnrolledModal" tabindex="-1" role="dialog" aria-labelledby="addClassEnrolledModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Add Class</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				ADD CLASS STUFF HERE
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	//set name
+	$("#name").append("John Doe");
+
+	function addMajorOption() {
+    	var newMajor = prompt("What major would you like to add? E.g.: EECS 395");
+    	if (newMajor != null && newMajor != "") {
+	    	var len = $('#majorList option').length;
+	    	$("#majorList").append($('<option></option>').attr("value","Major " + (len + 1)).text(newMajor));
+	    } //SEND TO DATABASE AND REFRESH
+	}
+
+	function delMajorOption() {
+		$("#majorList option:selected").remove();
+	}
+
+	function addClassTakenOption() {
+    	var newClass = prompt("What class would you like to add? E.g.: EECS 395");
+    	if (newClass != null && newClass != "") {
+	    	var len = $('#classTakenList option').length;
+	    	$("#classTakenList").append($('<option></option>').attr("value","Class " + (len + 1)).text(newClass));
+	    } //SEND TO DATABASE AND REFRESH
+	}
+
+	function delClassTakenOption() {
+		$("#classTakenList option:selected").remove();
+	}
+
+	function addClassEnrollOption() {
+    	var newClass = prompt("What class would you like to add? E.g.: EECS 395");
+    	if (newClass != null && newClass != "") {
+	    	var len = $('#classEnrolledList option').length;
+	    	$("#classEnrolledList").append($('<option></option>').attr("value","Class " + (len + 1)).text(newClass));
+	    } //SEND TO DATABASE AND REFRESH
+	}
+
+	function delMajorOption() {
+		$("#classEnrolledList option:selected").remove();
+	}
+</script>
