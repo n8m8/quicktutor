@@ -1,4 +1,11 @@
 Simple Text Readme Aditya Malik
+Entry for week 7:
+- Met with Kian and Nathan to discuss next steps on Todo
+- Read up documentation on Flask Flash
+- Wrote and implemented flask flash in areas necessary with front-end and backend code
+
+Bugs: 
+- Indentation errors found various times
 
 Entry for week 6:
 - Worked on routing front end listing to backend database

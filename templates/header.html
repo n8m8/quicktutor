@@ -8,6 +8,30 @@
 	<h3 id="headerString">Welcome to your QuickTutor Dashboard</h3>
 </div>
 
+<body>
+    <div class="container " style="min-height:100%  width:80%">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close ">
+                <span aria-hidden="true">&times; </span></button>
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% block body%} {% endblock %}
+
+
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+</body>
+
+
 <script type="text/javascript">
 	var data = $.get( "/profile/get", {}).then(function (response) {
     response = JSON.parse(response)
