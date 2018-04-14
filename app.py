@@ -36,6 +36,10 @@ def dashboard():
 	else:
 		return redirect('/')
 
+@app.route("/TandC")
+def terms():
+    return render_template('TandC.html')
+
 
 ##### Web Service Routes #####
 

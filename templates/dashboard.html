@@ -21,6 +21,17 @@
 			<div class="col-md-8" id="mainContent">
 				<div>
 					{% include 'tutorRequests.html' %}
+					<div class = "col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                        <div class="alert alert-warning " role="alert">
+                          <strong>Class Name</strong> Description of Problem
+                          <button type="button" class="btn btn-success pull-right" id = "BtnFix">
+                          <span class="glyphicon glyphicon-ok"></span>
+                          </button>
+                          <button type="button" class="btn btn-danger pull-right" id = "BtnTwoFix">
+                          <span class="glyphicon glyphicon-remove"></span>
+                          </button>
+                        </div>
+                    </div>
 					{% include 'content.html' %}
 
 				</div>
@@ -113,6 +124,6 @@
 
 		}
 	</script>
-
+{% include 'footer.html' %}
 </body>
 </html>

@@ -1,3 +1,12 @@
+Week 7:
+Added footer page with navbar at the bottom of every page
+Edited app.py to accompany footers, terms and conditions
+Met with Kian about how to approach styling and javascript
+Fixed bugs from previous version of flash
+Added accept and request confirmation for tutor requests from front end, will integrate with back end
+Addeed glyphicons and alert pages for new requests.
+Edited Terms and Conditions with css formatting
+
 Week 6:
 Added javascript to get requests
 Debugged database with login cookie and session ID error.
