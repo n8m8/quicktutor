@@ -22,7 +22,7 @@
 				<div>
 					{% include 'tutorRequests.html' %}
 					<div class = "col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                        <div class="alert alert-warning " role="alert">
+                        <!--<div class="alert alert-warning " role="alert">
                           <strong>Class Name</strong> Description of Problem
                           <button type="button" class="btn btn-success pull-right" id = "BtnFix">
                           <span class="glyphicon glyphicon-ok"></span>
@@ -30,9 +30,11 @@
                           <button type="button" class="btn btn-danger pull-right" id = "BtnTwoFix">
                           <span class="glyphicon glyphicon-remove"></span>
                           </button>
-                        </div>
+                        </div>-->
+                        <table id='listingsTable'>
+
+                        </table>
                     </div>
-					{% include 'content.html' %}
 
 				</div>
 			</div>
@@ -89,9 +91,22 @@
 	</div>
 
 	<script>
-		var username = $.get( "/request/getBasicInfo", {}).then(function (response) {
-			console.log("Username: " + response);
-		});
+  $(document).ready(function() {
+    var markup1 = '<tr class="alert alert-warning " role="alert"><td><strong>' // then class name
+    var markup2 = '</strong>' // then description of Problem
+    var markup3 = '<button type="button" class="btn btn-success pull-right" id = "BtnFix"><span class="glyphicon glyphicon-ok"></span></button><button type="button" class="btn btn-danger pull-right" id = "BtnTwoFix"><span class="glyphicon glyphicon-remove"></span></button></td><tr>'
+
+    var listingModel = []
+    $.getJSON('/listings/getall', function(data) {
+      listingModel = data;
+    }).then( function() {
+      $.each(listingModel, function(index, element) {
+        $('#listingsTable').append(markup1 + element.classname + markup2 + element.shortDescription + markup3);
+      });
+    }, function() {
+      console.log("/listings/getall request failed");
+    });
+  })
 	</script>
 
 	<script>

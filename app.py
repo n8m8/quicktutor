@@ -178,6 +178,7 @@ def listings_getall():
 		new['listingid'] = item[0]
 		new['userid'] = item[1]
 		new['classid'] = item[2]
+		new['classname'] = getClassStringName((item[2],))
 		new['shortDescription'] = item[3]
 		new['topic'] = item[4]
 		new['location'] = item[5]
