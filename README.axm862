@@ -1,9 +1,20 @@
 Simple Text Readme Aditya Malik
+
+Entry for week 8:
+- Focus this week was on presentation and poster
+- Created template and wrote up parts of poster and presentation
+- Worked on bug fixes
+- After a lot of feedback from the SOURCE poster presentation, many people suggested creating a fully functioning application for money
+  because people believe it has a lot of potential to be a great platform for students across the nation
+- Because of this feedback, I went ahead and began building a "features" website which we can integrate into our website now by a simple link,
+  but to avoid mixing file names I put it in a separate folder
+- Built initial HTML/CSS for a features website which I will continue working on
+
 Entry for week 7:
 - Met with Kian and Nathan to discuss next steps on Todo
 - Read up documentation on Flask Flash
 - Wrote and implemented flask flash in areas necessary with front-end and backend code
-- Worked on bug fixes from previous entries 
+- Worked on bug fixes from previous entries
 
 Bugs:
 - Indentation errors found various times (FIXED)
