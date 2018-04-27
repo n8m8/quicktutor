@@ -94,19 +94,32 @@
   $(document).ready(function() {
     var markup1 = '<tr class="alert alert-warning " role="alert"><td><strong>' // then class name
     var markup2 = '</strong>' // then description of Problem
-    var markup3 = '<button type="button" class="btn btn-success pull-right" id = "BtnFix"><span class="glyphicon glyphicon-ok"></span></button><button type="button" class="btn btn-danger pull-right" id = "BtnTwoFix"><span class="glyphicon glyphicon-remove"></span></button></td><tr>'
+    var markup3 = '<button type="button" class="btn btn-success pull-right" onclick="acceptRequest('
+    var markup4 = ')"><span class="glyphicon glyphicon-ok"></span></button><button type="button" class="btn btn-danger pull-right" onclick="dismissRequest('
+    var markup5 = ')"><span class="glyphicon glyphicon-remove"></span></button></td><tr>'
 
     var listingModel = []
     $.getJSON('/listings/getall', function(data) {
       listingModel = data;
-    }).then( function() {
+    }).then(function() {
+      console.log(listingModel);
       $.each(listingModel, function(index, element) {
-        $('#listingsTable').append(markup1 + element.classname + markup2 + element.shortDescription + markup3);
+        $('#listingsTable').append(markup1 + element.classname + markup2 + element.shortDescription + markup3 + element.listingid + markup4 + element.listingid + markup5);
       });
     }, function() {
       console.log("/listings/getall request failed");
     });
+
+
   })
+  function acceptRequest(listingId) {
+    console.log("accepting listingid: " + listingId);
+    
+  };
+
+  function dismissRequest(listingId) {
+    console.log("dismissing listingid: " + listingId);
+  };
 	</script>
 
 	<script>

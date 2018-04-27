@@ -204,7 +204,8 @@ def listings_create():
 	message['description'] = description
 	message['userid'] = getUserIdFromEmail((session['user_name'],))
 	socketio.emit('new listing', message, broadcast=True)
-	return json.dumps(message)
+	flash("New request made successfully!")
+	return ('', 204) # i got an error when flashing w/o a return and this return is no content
 
 # createlistings
 @app.route("/request/respond", methods=['POST'])
@@ -213,25 +214,6 @@ def listings_respond():
 	listingId = request.form['listingId']
 	addHelpPair(email, listingId)
 	return "notImplementedException"
-
-
-### Messages ###
-# sendmessage
-@app.route("/msg/send", methods=['POST'])
-def msg_send():
-	originId = request.form['originId']
-	destId = request.form['destId']
-	messagecontents = request.form['messagecontents']
-	addMessage(originId, destId, messagecontents)
-	return "notImplementedException"
-
-# receivemessages
-@app.route("/msg/receive", methods=['POST'])
-def msg_receive():
-	userId = request.form['userId']
-	messages = dbRequests.getAllMessages(userId)
-	return messages
-
 
 ### Profile ###
 # get a profile
@@ -271,7 +253,6 @@ def profile_changescreenname():
 # AddClass
 @app.route("/profile/addclass", methods=['POST'])
 def profile_addclass():
-
 	classDept = request.form['classDept']
 	classNum = request.form['classNum']
 	addRuserClass((session['user_name'], classDept, classNum,))
