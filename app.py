@@ -154,7 +154,7 @@ def login():
 
 @app.route('/auth/logout', methods=['POST'])
 def logout():
-	del socketIODict[request.cookies.get('session')]
+	# del socketIODict[request.cookies.get('session')]
 	session.pop('user_name', None)
 	session['logged_in'] = False
 	session['admin'] = False
