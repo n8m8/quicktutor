@@ -336,8 +336,8 @@ def addDefaultAccounts():
     modpw = generate_password_hash('Password1')
 
     try:
-        c.execute("INSERT INTO users(userid, email, password, displayname, confirmed) values(null,?,?,?,?)", ('qtadmin@case.edu', adminpw, 'admin', True))
-        c.execute("INSERT INTO users(userid, email, password, displayname, confirmed) values(null,?,?,?,?)", ('qtmod@case.edu', modpw, 'moderator', True))
+        c.execute("INSERT INTO users(userid, email, password, displayname, confirmed) values(null,?,?,?,?)", ('qtadmin@case.edu', adminpw, 'admin', 'TRUE'))
+        c.execute("INSERT INTO users(userid, email, password, displayname, confirmed) values(null,?,?,?,?)", ('qtmod@case.edu', modpw, 'moderator', 'TRUE'))
     except sqlite3.IntegrityError:
         print("Tried to add default accounts, but they already exist")
 

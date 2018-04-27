@@ -128,10 +128,11 @@ def login():
 	# print(request.form)
 	# userId = validateUserData((request.form['loginemail'], request.form['loginpassword'],))
 	hashedPassword = getHashedPassword((request.form['loginemail'],))
-
+	print(hashedPassword)
+	print(request.form['loginemail'])
 	if hashedPassword is None:
-		flash("There is no account associated with that email address.")
-		# return "There is no account associated with that email address."
+		# flash("There is no account associated with that email address.")
+		return "There is no account associated with that email address."
 
 	matches = check_password_hash(hashedPassword, request.form['loginpassword'])
 
