@@ -205,15 +205,16 @@ def listings_create():
 	message['userid'] = getUserIdFromEmail((session['user_name'],))
 	socketio.emit('new listing', message, broadcast=True)
 	flash("New request made successfully!")
-	return ('', 204) # i got an error when flashing w/o a return and this return is no content
+	return ('', 204) # i got an error when flashing w/o a return and this return is no content. actually might be because i'm not using a flask form when I make the request, i'm making a JQuery request
 
 # createlistings
-@app.route("/request/respond", methods=['POST'])
+@app.route("/listings/respond", methods=['POST'])
 def listings_respond():
-	email = request.form['email']
+	email = session['user_name']
 	listingId = request.form['listingId']
-	addHelpPair(email, listingId)
-	return "notImplementedException"
+	requestingUserId = getUserIdFromListingId((listingId,))
+	socketio.emit('user message', {'data': 'I just accepted your request!'}, room=listOfUsers[requestingUserId])
+	return ('', 204)
 
 ### Profile ###
 # get a profile

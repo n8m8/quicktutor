@@ -293,6 +293,27 @@ def getUsernameFromUserEmail(data):
     conn.close()
     return name
 
+def getUserIdFromListingId(query_data):
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    c.execute("SELECT l_userid FROM listings WHERE listingid=?",(query_data))
+
+    r = c.fetchone()
+
+    conn.commit()
+    conn.close()
+
+    if r is None:
+        return "Error"
+    else:
+        if r[0] is None:
+            return "Error"
+        else:
+            return r
+
+    return "Error"
+
 def changeUserScreenname(query_data):
     conn = sqlite3.connect(dbname)
     c = conn.cursor()

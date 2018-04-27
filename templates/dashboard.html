@@ -114,7 +114,12 @@
   })
   function acceptRequest(listingId) {
     console.log("accepting listingid: " + listingId);
-    
+    data = {}
+    $.post('/listings/respond', {'listingId': listingId}, function(result) {
+      data = result
+    }).then(function() {
+      // something here?
+    })
   };
 
   function dismissRequest(listingId) {
