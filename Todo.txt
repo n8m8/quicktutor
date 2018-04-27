@@ -1,17 +1,38 @@
 # Front End
-1) Finish GUI to display all listings
-2) Send request from GUI to accept listing
-3) Edit profile screen
-4) Forgot password link
+1) Make listings prettier on GUI
+~~~2) Send request from GUI to accept listing~~~
+3) Edit profile screen (note: I think there should be no distinction between class taken and class enrolled. let's just do classes for now so we can get this done w/o having to mess around with other stuff that can just introduce bugs and make it take longer to finish)
+  a) Implement /profile/addclass route
+    {classDept: 'MATH', classNum: '121'}
+  b) Implement /profile/removeclass route
+    {classDept: 'MATH', classNum: '121'}
+  c) Implement /profile/changescreenname route
+    {newName: 'John Doe'}
+4) Add password reset button (the way I did it, it just emails a new random password... depending on time Nate can give ability to type a new one but this should be low priority)
 5) Tell user what password strength requirements are
+6) New Request screen
+  a) Make it prettier
+  b) Change the class name field from a textbox to a dropdown. use the /profile/get route (there are no parameters), they get returned like this:
+  {
+    "classes": [{
+      "classid": 1,
+      "stringName": "ACCT 101"
+      }, {
+      "classid": 200,
+      "stringName": "ANTH 601"
+      }
+    ],
+    "email": "qtadmin@case.edu",
+    "screenname": "admin"
+  }
 
 
 # Back End
 ~~~1) Fix memory leak bug with socketio, clear dict on logout~~~
 ~~~2) Send a socketIO upon posting a request to push notifications for other users~~~
-~~~3) Write web service that handles accepting request
+3) Write web service that handles accepting request
   a) Add pair to database
-  b) Open a socketIO between tutee and tutor to start chat~~~
+  b) Open a socketIO between tutee and tutor to start chat
 ~~~4) Fix bug allowing unconfirmed user to log in~~~
 
 # Later lower priority stuff
