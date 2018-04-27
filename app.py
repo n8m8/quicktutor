@@ -260,7 +260,19 @@ def profile_removeclass():
 	flash("Removed your class!")
 	# return "Removed your class!"
 
+@app.route("/profile/edit", methods=['POST'])
+def profile_edit():
+	addclasses = request.form['addclasses']
+	deleteclasses = request.form['deleteclasses']
+	screenname = request.form['screenname']
 
+	for c in addclasses:
+		addRuserclass((session['user_name'], c['classDept'], c['classNum']))
+
+	for c in deleteclasses:
+		deleteRuserClass((session['user_name'], c['classDept'], c['classNum']))
+
+	flash("Updated your profile!")
 
 
 @app.route("/listings/respond", methods=['POST'])
