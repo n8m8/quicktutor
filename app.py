@@ -207,15 +207,6 @@ def listings_create():
 	flash("New request made successfully!")
 	return ('', 204) # i got an error when flashing w/o a return and this return is no content. actually might be because i'm not using a flask form when I make the request, i'm making a JQuery request
 
-# createlistings
-@app.route("/listings/respond", methods=['POST'])
-def listings_respond():
-	email = session['user_name']
-	listingId = request.form['listingId']
-	requestingUserId = getUserIdFromListingId((listingId,))
-	socketio.emit('user message', {'data': 'I just accepted your request!'}, room=listOfUsers[requestingUserId])
-	return ('', 204)
-
 ### Profile ###
 # get a profile
 @app.route("/profile/get", methods=['GET'])
@@ -269,6 +260,17 @@ def profile_removeclass():
 	flash("Removed your class!")
 	# return "Removed your class!"
 
+
+
+
+@app.route("/listings/respond", methods=['POST'])
+def listings_respond():
+	email = session['user_name']
+	listingId = request.form['listingId']
+	requestingUserId = getUserIdFromListingId((listingId,))
+	socketio.emit('tutor accepted', {'recipientUserId': requestingUserId})
+	return ('', 204)
+
 # SocketIO
 socketio = SocketIO(app)
 
@@ -297,7 +299,8 @@ def sendMessageToRecipient(recipientUserId, message):
 
 @socketio.on('tutor accepted')
 def tutor_accepted(json):
-	addRuserClass((session['user_name'], json['classid']))
+	print('socketio on tutor accepted was executed')
+	# addRuserClass((session['user_name'], json['classid']))
 	sendMessageToRecipient(json['recipientUserId'], "I just accepted your tutor request. Please help!")
 
 # METHOD FOR TUTOR CHATBOX HANDSHAKE
