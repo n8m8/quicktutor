@@ -42,7 +42,7 @@
 				<div>
 					<p>PROFILE AND INFO</p>
 					<button id="buttonEditProfile" class="btn btn-sm btn-success btn-block" data-toggle="modal" data-target="#editProfileModal">Edit Profile</button>
-					<button id="buttonNewRequest" class="btn btn-sm btn-primary btn-block">New Request</button>
+					<button id="buttonNewRequest" class="btn btn-sm btn-primary btn-block" data-toggle="modal" data-target="#newRequestModal">New Request</button>
 					<form action="/auth/logout" style="margin-top: 5px;" method="POST"><button id="buttonLogOut" class="btn btn-sm btn-danger btn-block" onclick="window.location='/'">Log Out</button></form>
 					<div id="modalNewRequest" class="modal">
 						<div class="modal-content">
@@ -56,7 +56,6 @@
 								<br><br>
 								<input type="submit" value="Submit">
 							</form-->
-							{% include 'NewRequestForm.html' %}
 						</div>
 					</div>
 				</div>
@@ -78,13 +77,47 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-primary" onclick="document.getElementById('editProfileForm').submit();">Save changes</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="chatboxholders" style="position: fixed; height: 40vh; bottom: 15px">
+	<div class="modal fade" id="newRequestModal" tabindex="-1" role="dialog" aria-labelledby="newRequestModal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">New Request</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="newRequestForm" action="/listings/create" method="POST">
+						<label id="newRequestClassLabel">Classes Name:</label>
+						<select id="newRequestClass" name="newRequestClass">
+							<option value="ACCT 101">ACCT 101</option>
+						</select><br>
+						<label id="newRequestTopicLabel">Display Name: </label>
+						<input id="newRequestTopic" name="newRequestTopic" placeholder="Derivatives, Interaces, ..." value=""><br>
+						<label id="newRequestLocationLabel">Location:</label>
+						<select id="newRequestLocation" name="newRequestLocation">
+							<option value="KSL">KSL</option>
+						</select><br>
+						<label id="newRequestDescLabel">Description: </label>
+						<textarea id="newRequestDescription" name="newRequestDescription" placeholder="Description of your question..."></textarea>
+						<input type="submit" value="Submit" hidden="true">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" onclick="document.getElementById('newRequestForm').submit();" data-dismiss="modal">Submit Request</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="chatboxholders" style="position: fixed; height: 40vh; bottom: 50px">
 		<div id="row">
 			{% include 'chatUI.html' %}
 		</div>
@@ -132,7 +165,7 @@
 
 	<script type="text/javascript">
 		// get variables from HTML
-		var modalNewRequest = document.getElementById('modalNewRequest');
+/*		var modalNewRequest = document.getElementById('modalNewRequest');
 		var buttonNewRequest = document.getElementById('buttonNewRequest');
 		var modalNewRequestClose = document.getElementById('modalNewRequestClose');
 
@@ -151,11 +184,14 @@
 			if (event.target == modalNewRequest) {
 				modalNewRequest.style.display = "none";
 			}
-		}
+		}*/
 
-		function editProfile() {
-
-		}
+		profile = $.get('/profile/get', {}).then(function (response) {
+		    response = JSON.parse(response)
+			console.log("PROFILE GET!");
+			console.log(response);
+			$('#username').attr('value', response.screenname);
+		});
 	</script>
 {% include 'footer.html' %}
 </body>

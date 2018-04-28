@@ -1,27 +1,14 @@
-<form>
-	<div class="form-group">
-		<label id="name">Name: </label><br>
-		<label id="usernameLabel">Display Name: </label>
-		<input id="username" placeholder="Enter New Display Name" value="John Doe"><br>
-		<label id="majorLabel">Major(s): </label>
-		<select id="majorList">
-		</select>
-		<!-- <button type="button" class="btn btn-success btn-xs" onclick="addMajorOption()">Add Major</button> -->
-		<button type="button" class="btn btn-danger btn-xs" onclick="delMajorOption()">Del Major</button><br>
-		<!-- drop down with list of majors and add major option -->
-		<label id="classLabel">Classes Taken:</label>
-		<select id="classTakenList">
-		</select>
-		<button type="button" class="btn btn-success btn-xs" onclick="addClassTakenOption()">Add Class</button>
-		<button type="button" class="btn btn-danger btn-xs" onclick="delClassTakenOption()">Del Class</button><br>
-		<!-- drop down list with classes taken and add class option -->
-		<label id="classLabel">Classes Enrolled In:</label>
-		<select id="classEnrolledList">
-		</select>
-		<button type="button" class="btn btn-success btn-xs" onclick="addClassEnrollOption()">Add Class</button>
-		<button type="button" class="btn btn-danger btn-xs" onclick="delClassEnrollOption()">Del Class</button><br>
-		<!-- drop down list with classes enrolled in and add class option -->
-	</div>
+<form id="editProfileForm">
+	<label id="name">Name: </label><br>
+	<label id="usernameLabel">Display Name: </label>
+	<input id="username" placeholder="Enter New Display Name" value=""><br>
+	<!-- drop down with list of majors and add major option -->
+	<label id="classLabel">Classes Taken:</label>
+	<select id="classTakenList">
+	</select>
+	<button type="button" class="btn btn-success btn-xs" onclick="addClassTakenOption()">Add Class</button>
+	<button type="button" class="btn btn-danger btn-xs" onclick="delClassTakenOption()">Del Class</button><br>
+	<!-- drop down list with classes taken and add class option -->
 </form>
 
 <button class="btn btn-xs btn-success" data-toggle="modal" data-target="#addMajorModal">Add Major</button>
@@ -92,6 +79,9 @@
 	//set name
 	$("#name").append("John Doe");
 
+	var addedClasses = [];
+	var deletedClasses = [];
+
 	function addMajorOption() {
     	var newMajor = prompt("What major would you like to add? E.g.: EECS 395");
     	if (newMajor != null && newMajor != "") {
@@ -109,11 +99,15 @@
     	if (newClass != null && newClass != "") {
 	    	var len = $('#classTakenList option').length;
 	    	$("#classTakenList").append($('<option></option>').attr("value","Class " + (len + 1)).text(newClass));
+
+	    	addedClasses.push(newClass);
 	    } //SEND TO DATABASE AND REFRESH
 	}
 
 	function delClassTakenOption() {
-		$("#classTakenList option:selected").remove();
+		var deleteClass = $("#classTakenList option:selected");
+		deletedClasses.push(deleteClass.val);
+		deleteClass.remove();
 	}
 
 	function addClassEnrollOption() {

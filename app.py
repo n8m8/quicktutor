@@ -191,21 +191,21 @@ def listings_getall():
 # createlistings
 @app.route("/listings/create", methods=['POST'])
 def listings_create():
-	className = request.form['className']
-	topic = request.form['requestTopic']
-	location = request.form['requestLocation']
-	description = request.form['requestDescription']
+	className = request.form['newRequestClass']
+	topic = request.form['newRequestTopic']
+	location = request.form['newRequestLocation']
+	description = request.form['newRequestDescription']
 	classId = getClassIdFromName(className)
 	addListing((session['user_name'], classId, description, topic, location,))
 	message = {}
-	message['className'] = request.form['className']
+	message['className'] = className
 	message['topic'] = topic
 	message['location'] = location
 	message['description'] = description
 	message['userid'] = getUserIdFromEmail((session['user_name'],))
 	socketio.emit('new listing', message, broadcast=True)
 	flash("New request made successfully!")
-	return ('', 204) # i got an error when flashing w/o a return and this return is no content. actually might be because i'm not using a flask form when I make the request, i'm making a JQuery request
+	return redirect("/dashboard") # i got an error when flashing w/o a return and this return is no content. actually might be because i'm not using a flask form when I make the request, i'm making a JQuery request
 
 ### Profile ###
 # get a profile
