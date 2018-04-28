@@ -35,6 +35,40 @@
   b) Open a socketIO between tutee and tutor to start chat
 ~~~4) Fix bug allowing unconfirmed user to log in~~~
 
+
+#group reports 
+Your written report should consist of two parts: a group report and
+individual reports. The group report should contain a thorough
+description of your project goals and current status. It should
+describe the detailed architecture of the project and what features it
+has. It should describe the UI, how testing was done and test cases
+were incorporated and how the code was documented. It should
+describe at least one hypothetical usage scenario and how the software would
+actually be used in that context. It should compare the status to the
+project draft that was submitted at the start of the project. Based on
+this comparison, it should identify what was accomplished, what was
+not, and lessons learned at the team level (both in terms of technical
+lessons as well as project management.)
+
+#individual reports
+The individual reports should be appended to the group report. There
+should be one report for each person. This report should describe
+which aspect of the project you were responsible for and a description
+of how you achieved your objectives and what issues you ran into (from
+your weekly logs). Then, you should write about the lessons you
+learned while doing your part, and any other thoughts and insights you
+had while working on this project.
+
+#presentation
+The presentation and demo in class are a synopsis of your report. This
+will be 30 minutes long. It should begin with a segment overviewing
+the goals, implementation architecture and features, UI and testing.
+Each team member will then present their individual work. Finally,
+there should be a discussion of lessons learned, followed by a
+detailed demo of the system built. Note that the demo is worth 15%
+of the final grade. Therefore, you should carefully design it to show all
+the capabilities of your system in a nice way.
+
 # Later lower priority stuff
 1) Flask flashing
 2) SocketIO everything
