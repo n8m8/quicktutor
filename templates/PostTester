@@ -1,0 +1,4 @@
+<form action="PostTester.html" method="POST">  
+    <input type="submit" value="POST!" />
+</form>
+
