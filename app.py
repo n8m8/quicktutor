@@ -154,6 +154,7 @@ def login():
 		session['logged_in'] = False
 		print(session)
 		flash("Login information was not valid.")
+		return render_template('index.html')
 		# return "Login information was not valid."
 
 	return render_template('dashboard.html')
