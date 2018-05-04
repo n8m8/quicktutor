@@ -87,6 +87,8 @@ def auth_signup():
 		flash("Invalid email address. Please use a valid @case.edu address.")
 		# return "Invalid email address. Please use a valid @case.edu address."
 
+	return render_template('index.html')
+
 # activate
 @app.route("/auth/activate/<token>", methods=['GET'])
 def auth_activate(token):
@@ -102,6 +104,8 @@ def auth_activate(token):
 		else:
 			flash("Unable to confirm user. Maybe your account is already activated, or your activation token expired.")
 			# return "Unable to confirm user. Maybe your account is already activated, or your activation token expired."
+
+	return render_template('index.html')
 
 
 # forgotPassword
@@ -120,6 +124,8 @@ def auth_forgotpassword():
 			changeUserPassword((generate_password_hash(newpassword), email,))
 
 			flash("Your password was reset! Check your email for your new password.")
+
+	return render_template('index.html')
 			# return "Your password was reset! Check your email for your new password."
 
 
@@ -149,9 +155,10 @@ def login():
 		session['logged_in'] = False
 		print(session)
 		flash("Login information was not valid.")
+		return render_template('index.html')
 		# return "Login information was not valid."
 
-	return redirect('/dashboard')
+	return render_template('dashboard.html')
 
 @app.route('/auth/logout', methods=['POST'])
 def logout():
@@ -205,9 +212,8 @@ def listings_create():
 	message['description'] = description
 	message['userid'] = getUserIdFromEmail((session['user_name'],))
 	socketio.emit('new listing', message, broadcast=True)
-	#flash("New request made successfully!")
-	#return redirect("/dashboard") # i got an error when flashing w/o a return and this return is no content. actually might be because i'm not using a flask form when I make the request, i'm making a JQuery request
-	return redirect("/dashboard")
+	flash("New request made successfully!")
+	return render_template('dashboard.html') # i got an error when flashing w/o a return and this return is no content. actually might be because i'm not using a flask form when I make the request, i'm making a JQuery request
 
 ### Profile ###
 # get a profile
@@ -231,10 +237,11 @@ def profile_get():
 			return json.dumps(ret)
 		else:
 			flash("User did not exist")
-			# return "User did not exist"
+			return "User did not exist"
 	else:
 		flash("Invalid protocol for this route, use GET")
 		# return "Invalid protocol for this route, use GET"
+	return render_template('dashboard.html')
 
 # ChangeScreenName
 @app.route("/profile/changescreenname", methods=['POST'])
@@ -242,6 +249,7 @@ def profile_changescreenname():
 	newName = request.form['newName']
 	changeUserScreenname((newName, session['user_name']))
 	flash("Changed screennname!")
+	return render_template('dashboard.html')
 	# return "Changed screennname!"
 
 # AddClass
@@ -251,6 +259,7 @@ def profile_addclass():
 	classNum = request.form['classNum']
 	addRuserClass((session['user_name'], classDept, classNum,))
 	flash("Added your class!")
+	return render_template('dashboard.html')
 	# return "Added your class!"
 
 # RemoveClass
@@ -260,6 +269,7 @@ def profile_removeclass():
 	classNum = request.form['classNum']
 	deleteRuserClass((session['user_name'], classDept, classNum,))
 	flash("Removed your class!")
+	return render_template('dashboard.html')
 	# return "Removed your class!"
 
 @app.route("/profile/edit", methods=['POST'])
@@ -275,6 +285,7 @@ def profile_edit():
 		deleteRuserClass((session['user_name'], c['classDept'], c['classNum']))
 
 	flash("Updated your profile!")
+	return render_template('dashboard.html')
 
 
 @app.route("/listings/respond", methods=['POST'])
