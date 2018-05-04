@@ -10,6 +10,7 @@ import config
 app = Flask(__name__)
 app.config.from_object('config')
 mail = Mail(app)
+listID = 0
 
 ##### Front End Routes #####
 
@@ -204,8 +205,9 @@ def listings_create():
 	message['description'] = description
 	message['userid'] = getUserIdFromEmail((session['user_name'],))
 	socketio.emit('new listing', message, broadcast=True)
-	flash("New request made successfully!")
-	return redirect("/dashboard") # i got an error when flashing w/o a return and this return is no content. actually might be because i'm not using a flask form when I make the request, i'm making a JQuery request
+	#flash("New request made successfully!")
+	#return redirect("/dashboard") # i got an error when flashing w/o a return and this return is no content. actually might be because i'm not using a flask form when I make the request, i'm making a JQuery request
+	return redirect("/dashboard")
 
 ### Profile ###
 # get a profile
@@ -293,27 +295,45 @@ socketIODict = {}
 def init_connection(json):
 	# sessionID = request.cookies.get('session')
 	socketID = request.sid
-	socketIODict[session['user_name']] = socketID;
+	userID = getUserIdFromEmail((session['user_name'],))[0]
+	print("INITING USER ID:", userID, session['user_name'])
+	socketIODict[userID] = socketID;
 
 @socketio.on('chat msg send')
 def chat_msg_send(json):
-	message = json['message']
 	# sessionID = request.cookies.get('session')
-	receiver = json['recipientUserId']
-	sendMessageToRecipient(receiver, message)
+	print("ROOM:", json['sioRoom'])
+	sendMessageToRecipient(json['sioRoom'], json['message'])
 
 def sendMessageToRecipient(recipientUserId, message):
 	#connectedUserKeys = socketIODict.keys()
 	#for key in connectedUserKeys:
 	#	if sessionID != key:
 	#		recvSessionID = key
-	socketio.emit('chat msg recv', {'data': message}, room=socketIODict[getEmailFromUserid((recipientUserId,))])
+	socketio.emit('chat msg recv', {'data': message}, room=recipientUserId)
+
+@socketio.on('listing new')
+def listing_new(json):
+	print(json)
+	userid = getUserIdFromEmail((session['user_name'],))
+	print(userid)
+	json['uid'] = userid[0]
+	global listID
+	json['lid'] = listID
+	socketio.emit('listing broadcast', json, broadcast=True)
+	listID += 1
 
 @socketio.on('tutor accepted')
 def tutor_accepted(json):
-	print('socketio on tutor accepted was executed')
-	# addRuserClass((session['user_name'], json['classid']))
-	sendMessageToRecipient(json['recipientUserId'], "I just accepted your tutor request. Please help!")
+	#print('socketio on tutor accepted was executed')
+	tutorid = getUserIdFromEmail((session['user_name'],))[0]
+	userid = json['uid']
+	print("USERID:", json['uid'], " TUTORID:", tutorid)
+	sioTRoom = socketIODict[int(tutorid)]
+	sioURoom = socketIODict[int(userid)]
+	socketio.emit('chat msg init', {'roomid': sioTRoom}, room=sioURoom)
+	socketio.emit('chat msg init', {'roomid': sioURoom}, room=sioTRoom)
+	# DELETE LISTING USING GENERAL BROADCAST 
 
 # METHOD FOR TUTOR CHATBOX HANDSHAKE
 # After user accepts tutor request, this code runs
