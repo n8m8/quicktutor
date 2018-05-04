@@ -279,10 +279,10 @@ def profile_edit():
 	screenname = request.form['screenname']
 
 	for c in addclasses:
-		addRuserclass((session['user_name'], c['classDept'], c['classNum']))
+		addRuserclass((session['user_name'], c.split(' ')[0], c.split(' '[1])))
 
 	for c in deleteclasses:
-		deleteRuserClass((session['user_name'], c['classDept'], c['classNum']))
+		deleteRuserClass((session['user_name'], c.split(' ')[0], c.split(' ')[0]))
 
 	flash("Updated your profile!")
 	return render_template('dashboard.html')
@@ -344,7 +344,7 @@ def tutor_accepted(json):
 	sioURoom = socketIODict[int(userid)]
 	socketio.emit('chat msg init', {'roomid': sioTRoom}, room=sioURoom)
 	socketio.emit('chat msg init', {'roomid': sioURoom}, room=sioTRoom)
-	# DELETE LISTING USING GENERAL BROADCAST 
+	# DELETE LISTING USING GENERAL BROADCAST
 
 # METHOD FOR TUTOR CHATBOX HANDSHAKE
 # After user accepts tutor request, this code runs
