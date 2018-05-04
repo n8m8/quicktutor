@@ -52,7 +52,6 @@ function recvMsg(message) {
 	<div class="col-md-10 col-xs-10">
 		<div class="message msgSend">
 			<p id="msg">` + message + `</p>
-			<p id="username">RECV</p>
 		</div>
 	</div>
 </div>`;
