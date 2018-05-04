@@ -29,27 +29,14 @@ class MyTest(TestCase):
 		}, follow_redirects=False)
 		self.assertEqual(resp.status_code, 302)
 
-
-
-
-	def test_request_getUserInfo(self):
-		response = self.i.get("/request/getUserInfo")
-		data = json.loads(response.get_data(as_text=True))
-		self.assertEqual(data['userid', 'email', 'password', 'displayname'], 1, "test@case.edu", "password", "TestUser")
-
-	#test if flask was set up correctly
-	def test_index(self):
-		tester = app.test_client(self)
-		response = tester.get('/login', context_type = 'html/text')
-		self.assertEqual(response.status_code, 200)
-
-
 if __name__== '__main__':
 	unittest.main()
-#
-from flask import Flask
-from flask_testing import LiveServerTestCase
 
+
+#/////
+# from flask import Flask
+# from flask_testing import LiveServerTestCase
+#////
 class MyTest(LiveServerTestCase):
 
     def create_app(self):
@@ -64,3 +51,16 @@ class MyTest(LiveServerTestCase):
     def test_server_is_up_and_running(self):
         response = urllib2.urlopen(self.get_server_url())
         self.assertEqual(response.code, 200)
+
+
+
+	def test_request_getUserInfo(self):
+		response = self.i.get("/request/getUserInfo")
+		data = json.loads(response.get_data(as_text=True))
+		self.assertEqual(data['userid', 'email', 'password', 'displayname'], 1, "test@case.edu", "password", "TestUser")
+
+	#test if flask was set up correctly
+	def test_index(self):
+		tester = app.test_client(self)
+		response = tester.get('/login', context_type = 'html/text')
+		self.assertEqual(response.status_code, 200)
