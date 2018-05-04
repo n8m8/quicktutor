@@ -1,0 +1,6 @@
+All front end testing was done using Mozilla Firefox,in the Integrated Development Environment, Selenium.
+
+
+Test files are categorized by their respective html page, and have multiple functions within them.
+
+

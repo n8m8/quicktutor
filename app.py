@@ -41,6 +41,14 @@ def dashboard():
 def terms():
     return render_template('TandC.html')
 
+@app.route("/Contact")
+def conts():
+	return render_template('Contact.html')
+
+@app.route("/Documentation")
+def docs():
+	return render_template('documentation.html')
+
 
 ##### Web Service Routes #####
 

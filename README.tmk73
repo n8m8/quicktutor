@@ -1,3 +1,13 @@
+Week 10:
+Added Test to check Create New User
+Added Test to check Login with New User
+Added Test to check Edit Profile on Dashboard
+Added Test to check Logout on Dashboard
+Added Test to check New Request on Dashboard
+Added routes for Documentation Page
+Added route for Contact Page
+Fixed footer styling and placement
+
 Week 9:
 Added Documentation Page
 Added Contact us Page
